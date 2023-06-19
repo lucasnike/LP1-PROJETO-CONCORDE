@@ -12,7 +12,7 @@ endif()
 project ("Concorde")
 
 # Adicione a origem ao executável deste projeto.
-add_executable (Concorde "Concorde.cpp" "Concorde.h" "include/Usuario.h" "src/Usuario.cpp" "include/Mensagem.h" "src/Mensagem.cpp" "include/Canal.h" "include/CanalTexto.h" "src/CanalTexto.cpp" "include/CanalVoz.h" "src/CanalVoz.cpp" "include/Servidor.h" "src/Servidor.cpp" "include/Sistema.h" "src/Sistema.cpp")
+add_executable (Concorde "Concorde.cpp" "Concorde.h" "include/Usuario.h" "src/Usuario.cpp" "include/Mensagem.h" "src/Mensagem.cpp" "include/Canal.h" "include/CanalTexto.h" "src/CanalTexto.cpp" "include/CanalVoz.h" "src/CanalVoz.cpp" "include/Servidor.h" "src/Servidor.cpp" "include/Sistema.h" "src/Sistema.cpp" "include/interns/Comands.h")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET Concorde PROPERTY CXX_STANDARD 20)

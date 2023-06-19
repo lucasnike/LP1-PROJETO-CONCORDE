@@ -7,16 +7,15 @@ using namespace std;
 
 int main()
 {
-	vector<Usuario> usuarios;
-	usuarios.push_back(Usuario("Lucas", "lucas4cristal@gmail.com", "lucas123"));
-	usuarios.push_back(Usuario("Isabel", "isabel4cristal@gmail.com", "isabel123"));
-	usuarios.push_back(Usuario("Lucas", "marcos4cristal@gmail.com", "marcos123"));
-	usuarios.push_back(Usuario("Mario", "mario4cristal@gmail.com", "mario123"));
+	Sistema sys;
 
+	string currentComand;
 
-
-	for (Usuario user : usuarios)
+	while (true)
 	{
-		cout << user.getNome() << endl;
+		getline(cin, currentComand);
+
+		sys.comandsManager(currentComand);
+		break;
 	}
 }

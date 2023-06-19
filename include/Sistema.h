@@ -18,6 +18,8 @@ private:
 	int idUsuarioLogado;
 	Servidor* servidorVisualizado;
 	Canal* canalVisualizado;
+
+	void quit();
 public:
 	int getIdUsuarioLogadoId() const { return this->idUsuarioLogado; }
 	Servidor* getServidorVisualizado() const { return this->servidorVisualizado; }
@@ -26,4 +28,8 @@ public:
 	void setUsuarioLogadoId(int userId);
 	void setServidorViasualizado(Servidor* servidor);
 	void setCanalVisualizado(Canal* canal);
+
+	Sistema();
+
+	void comandsManager(string comand);
 };
