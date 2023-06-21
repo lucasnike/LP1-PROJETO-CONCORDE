@@ -1,9 +1,5 @@
-﻿// Concorde.cpp: define o ponto de entrada para o aplicativo.
-//
+﻿#include "Concorde.h"
 
-#include "Concorde.h"
-
-using namespace std;
 
 int main()
 {
@@ -16,6 +12,5 @@ int main()
 		getline(cin, currentComand);
 
 		sys.comandsManager(currentComand);
-		break;
 	}
 }

@@ -6,6 +6,10 @@
 #include "Canal.h"
 #include "CanalTexto.h"
 #include "CanalVoz.h"
+#include "./interns/Helper.h"
+#include "./interns/Comands.h"
+#include "./interns/TerminalColors.h"
+#include "./interns/Definitions.h"
 
 
 #pragma once
@@ -20,6 +24,8 @@ private:
 	Canal* canalVisualizado;
 
 	void quit();
+
+	int classificadorDeComandos(string comand);
 public:
 	int getIdUsuarioLogadoId() const { return this->idUsuarioLogado; }
 	Servidor* getServidorVisualizado() const { return this->servidorVisualizado; }

@@ -33,3 +33,11 @@
 
 out/
 .vs
+
+CMakeFiles/
+.vscode/
+cmake_install.cmake
+CMakeCache.txt
+CMakepresets.json
+Makefile
+concorde
