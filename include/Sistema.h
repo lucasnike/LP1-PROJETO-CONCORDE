@@ -24,6 +24,8 @@ private:
 	Canal* canalVisualizado;
 
 	void quit();
+	void createUser(string args);
+
 
 	int classificadorDeComandos(string comand);
 public:
