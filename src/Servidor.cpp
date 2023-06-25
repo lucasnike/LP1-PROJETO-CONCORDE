@@ -1,4 +1,11 @@
 #include "../include/Servidor.h"
+#include "Servidor.h"
+
+Servidor::Servidor(string nome, int dono)
+{
+	this->nome = nome;
+	this->usuarioDonoId = dono;
+}
 
 void Servidor::setUsuarioDonoId(int userId)
 {
@@ -18,4 +25,9 @@ void Servidor::setDescricao(string descricao)
 void Servidor::setCondigoConvite(string codigoConvite)
 {
 	this->codigoConvite = codigoConvite;
+}
+
+void Servidor::inserirParticipante(int id)
+{
+	this->participantesIds.push_back(id);
 }

@@ -16,6 +16,9 @@ private:
 	vector<Canal*> canais;
 	vector<int> participantesIds;
 public:
+	Servidor() = default;
+	Servidor(string nome, int dono);
+
 	int getUsuarioDonoId() const { return this->usuarioDonoId; }
 	string getNome() const { return this->nome; }
 	string getDescricao() const { return this->descricao; }
@@ -25,4 +28,6 @@ public:
 	void setNome(string nome);
 	void setDescricao(string descricao);
 	void setCondigoConvite(string codigoConvite);
+
+	void inserirParticipante(int id); 
 };

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 #include "Usuario.h"
 #include "Servidor.h"
@@ -19,14 +20,18 @@ class Sistema
 private:
 	vector<Usuario> usuarios;
 	vector<Servidor> servidores;
-	int idUsuarioLogado;
+	int idUsuarioLogado = 0;
 	Servidor* servidorVisualizado;
 	Canal* canalVisualizado;
 
-	void quit();
 	void createUser(string args);
 	void login(string args);
 	void disconnect();
+	void createServer(string name);
+	void setServerDescription(string desc);
+	void setServerInviteCode(string args);
+	void listServers();
+	void removeServer(string args);
 
 
 	int classificadorDeComandos(string comand);
@@ -39,8 +44,8 @@ public:
 	void setServidorViasualizado(Servidor* servidor);
 	void setCanalVisualizado(Canal* canal);
 
-	Sistema();
+	Sistema() = default;
 
-	void comandsManager(string comand);
+	bool comandsManager(string comand);
 	void displayAllUsers();
 };

@@ -1,15 +1,25 @@
 ﻿#include "Concorde.h"
 
+using namespace std;
+
 int main()
 {
-	string currentComand;
 	Sistema sys;
+	string currentComand;
+
+	bool quiting = false;
 
 	while (true)
 	{
-		getline(cin, currentComand, '\n');
+		getline(cin, currentComand);
 
-		sys.comandsManager(currentComand);
-		// sys.displayAllUsers();
+		quiting = sys.comandsManager(currentComand);
+
+		if (quiting)
+		{
+			break;
+		}
 	}
+
+	cout << str_cyan("\nSAINDO DO CONCORDE\n\n");
 }
