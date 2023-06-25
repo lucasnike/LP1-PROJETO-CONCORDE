@@ -25,6 +25,8 @@ private:
 
 	void quit();
 	void createUser(string args);
+	void login(string args);
+	void disconnect();
 
 
 	int classificadorDeComandos(string comand);
@@ -40,4 +42,5 @@ public:
 	Sistema();
 
 	void comandsManager(string comand);
+	void displayAllUsers();
 };

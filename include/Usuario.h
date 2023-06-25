@@ -13,7 +13,7 @@ private:
 	string senha;
 public:
 	Usuario();
-	Usuario(string nome, string email, string senha);
+	Usuario(int id, string nome, string email, string senha);
 
 #pragma region GET FUNCTIONS
 	int getId() const { return this->id; }

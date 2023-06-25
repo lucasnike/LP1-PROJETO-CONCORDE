@@ -1,17 +1,15 @@
 ﻿#include "Concorde.h"
 
-
 int main()
 {
+	string currentComand;
 	Sistema sys;
-
-	string currentComand = "";
 
 	while (true)
 	{
-		getline(cin, currentComand);
-		cout << currentComand;
+		getline(cin, currentComand, '\n');
 
 		sys.comandsManager(currentComand);
+		// sys.displayAllUsers();
 	}
 }
