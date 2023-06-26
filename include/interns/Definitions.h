@@ -11,5 +11,6 @@ enum class ComandsEnum
    set_server_desc = 6,
    set_server_invite_code = 7,
    list_servers = 8,
-   remove_server = 9
+   remove_server = 9,
+   enter_server = 10
 };

@@ -1,15 +1,11 @@
-remove-server bilu-teteia
-create-user lucas4cristal@gmail.com lucas123 Lucas Silva
-login lucas4cristal@gmail.com lucas123
+create-user lucas4cristal lucas123 Lucas Silva
+create-user isa220779 isa1979 Lucas Silva
+login lucas4cristal lucas123
 create-server 001-lucas
-create-server bala-doce
-create-server frauda-cheia
-create-server coelhinho-da-pascoa
-set-server-desc 001-lucas "Olá eu sou o goku"
-set-server-invite-code 001-lucas
 set-server-invite-code 001-lucas 0912
-list-servers
-remove-server bala-doce
+disconnect
+login isa220779 isa1979
+enter-server 001-lucas 0912
 list-servers
 disconnect
 quit

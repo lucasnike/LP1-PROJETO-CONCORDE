@@ -1,4 +1,3 @@
-#include "../include/Sistema.h"
 #include "Sistema.h"
 
 void Sistema::setUsuarioLogadoId(int userId)
@@ -79,6 +78,9 @@ bool Sistema::comandsManager(string comand)
 		break;
 	case (int)ComandsEnum::remove_server:
 		this->removeServer(comand);
+		break;
+	case (int)ComandsEnum::enter_server:
+		this->enterServer(comand);
 		break;
 	default:
 		break;
@@ -185,7 +187,6 @@ void Sistema::createServer(string name)
 	}
 
 	this->servidores.push_back(Servidor(name, this->idUsuarioLogado));
-	servidores[servidores.size() - 1].inserirParticipante(idUsuarioLogado);
 	cout << str_green("\nSERVIDOR CRIADO COM O NOME " + name + "\n\n");
 }
 
@@ -308,6 +309,60 @@ void Sistema::removeServer(string args)
 	cout << str_red("\nNÃO EXISTE NENHUM SERVIDOR COM O NOME INFORMADO\n\n");
 }
 
+void Sistema::enterServer(string args)
+{
+	if (args == "")
+	{
+		cout << str_red("\nPELO MENOS O NOME DO SERVIDOR DEVE SER INFORMADO\n\n");
+		return;
+	}
+
+	int index = args.find(' ');
+	string name = args.substr(0, index);
+
+	for (Servidor &server : this->servidores)
+	{
+		if (server.getNome() == name)
+		{
+			bool participa = server.participanteExiste(this->idUsuarioLogado);
+			if (server.getCondigoConvite() == "" || server.getUsuarioDonoId() == this->idUsuarioLogado || participa)
+			{
+				if (!participa)
+				{
+					server.inserirParticipante(this->idUsuarioLogado);
+				}
+				this->servidorVisualizado = &server;
+				cout << str_green("\nENTROU NO SERVIDOR COM SUCESSO\n\n");
+				return;
+			}
+			else
+			{
+				if (index == -1)
+				{
+					cout << str_red("\nÉ NECESSÁRIO INFORMAR O CÓDIGO DE CONVITE PARA ENTRAR NESTE SERVIDOR\n\n");
+					return;
+				}
+				args.erase(0, index + 1);
+
+				if (server.getCondigoConvite() == args)
+				{
+					server.inserirParticipante(this->idUsuarioLogado);
+					this->servidorVisualizado = &server;
+					cout << str_green("\nENTROU NO SERVIDOR COM SUCESSO\n\n");
+					return;
+				}
+				else
+				{
+					cout << str_red("\nO CÓDIGO DO CONVITE INFORMADO É INVÁLIDO\n\n");
+					return;
+				}
+			}
+		}
+	}
+
+	cout << str_red("\nNÃO EXISTE UM SERVIDOR COM O NOME INFORMADO\n\n");
+}
+
 int Sistema::classificadorDeComandos(string comand)
 {
 	for (char &c : comand)
@@ -333,6 +388,8 @@ int Sistema::classificadorDeComandos(string comand)
 		return (int)ComandsEnum::list_servers;
 	else if (comand == "REMOVE-SERVER")
 		return (int)ComandsEnum::remove_server;
+	else if (comand == "ENTER-SERVER")
+		return (int)ComandsEnum::enter_server;
 
 	return 0;
 }

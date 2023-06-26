@@ -32,6 +32,7 @@ private:
 	void setServerInviteCode(string args);
 	void listServers();
 	void removeServer(string args);
+	void enterServer(string args);
 
 
 	int classificadorDeComandos(string comand);

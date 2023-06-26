@@ -1,4 +1,3 @@
-#include "../include/Servidor.h"
 #include "Servidor.h"
 
 Servidor::Servidor(string nome, int dono)
@@ -30,4 +29,9 @@ void Servidor::setCondigoConvite(string codigoConvite)
 void Servidor::inserirParticipante(int id)
 {
 	this->participantesIds.push_back(id);
+}
+
+bool Servidor::participanteExiste(int id)
+{
+    return find_element(this->participantesIds, id);
 }

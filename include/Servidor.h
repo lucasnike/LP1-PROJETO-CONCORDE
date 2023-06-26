@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "Canal.h"
+#include "./interns/Helper.h"
 
 using namespace std;
 
@@ -30,4 +31,5 @@ public:
 	void setCondigoConvite(string codigoConvite);
 
 	void inserirParticipante(int id); 
+	bool participanteExiste(int id);
 };
