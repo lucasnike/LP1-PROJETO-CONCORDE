@@ -4,26 +4,42 @@ using namespace std;
 
 #pragma once
 
-class Mensagem {
+class Mensagem
+{
 private:
+	/// @brief Datetime que salva a data e hora que a mensagem foi enviada
 	string dataHora;
+	/// @brief Id do usuário que enviou a mensagem
 	int enviadoPor;
+	/// @brief  Conteudo da mensagem
 	string conteudo;
+
 public:
-	Mensagem();
+	/// @brief Contrutor padrão da classe Mensagem
+	Mensagem() = default;
+	/// @brief Construtor da classe Mensagem
+	/// @param dataHora Data e hora da mensagem
+	/// @param enviadoPor Id do usuário que enviou a mensagem
+	/// @param conteudo Texto com o conteúdo da mensagem
 	Mensagem(string dataHora, int enviadoPor, string conteudo);
 
-#pragma region GET FUNCTIONS
+	/// @brief Função Get do atributo Data e hora
+	/// @return Data e hora do envio da mensagem
 	string getDataHora() const { return this->dataHora; }
+	/// @brief Função Get do atributo que salva o id do usuário que enviou
+	/// @return Id do usuário que enviou a mensagem
 	int getEnviadoPor() const { return this->enviadoPor; }
+	/// @brief Função Get do atributo conteúdo da mensagem
+	/// @return Texto do conteúdo da mensagem
 	string getConteudo() const { return this->conteudo; }
-#pragma endregion
 
-#pragma region SET FUNCTIONS
+	/// @brief Função Set do data e hora
+	/// @param dataHora Data e hora que será salva no atributo
 	void setDataHora(string dataHora);
+	/// @brief Função Set do id do usuário que enviou a mensagem
+	/// @param userId 
 	void setEnviadoPor(int userId);
+	/// @brief Função Set do conteúdo da mensagem
+	/// @param conteudo Conteúdo da mensagem que será salvo
 	void setConteudo(string conteudo);
-#pragma endregion
-
-
 };

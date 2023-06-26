@@ -1,9 +1,5 @@
 #include "../include/Mensagem.h"
 
-Mensagem::Mensagem()
-{
-}
-
 Mensagem::Mensagem(string dataHora, int enviadoPor, string conteudo)
 {
 	this->conteudo = conteudo;

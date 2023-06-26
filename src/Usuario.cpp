@@ -1,9 +1,5 @@
 #include "../include/Usuario.h"
 
-Usuario::Usuario()
-{
-}
-
 Usuario::Usuario(int id, string nome, string email, string senha)
 {
 	this->id = id;

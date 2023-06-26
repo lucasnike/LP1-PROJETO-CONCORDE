@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CONCORDE: Código-Fonte de include/Sistema.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">CONCORDE
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Busca','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Busca');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Sistema.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;Usuario.h&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;Servidor.h&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;Canal.h&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;CanalTexto.h&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;CanalVoz.h&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;./interns/Helper.h&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;./interns/Comands.h&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;./interns/TerminalColors.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;./interns/Definitions.h&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classSistema.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSistema.html">Sistema</a></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classSistema.html#abb256581959e67fa9018bbbb7dee158f">   22</a></span>&#160;    vector&lt;Usuario&gt; <a class="code" href="classSistema.html#abb256581959e67fa9018bbbb7dee158f">usuarios</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classSistema.html#a2f32cee522013a6c18cec2643486a25f">   24</a></span>&#160;    vector&lt;Servidor&gt; <a class="code" href="classSistema.html#a2f32cee522013a6c18cec2643486a25f">servidores</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classSistema.html#ae73d63b638cfd0d24a47d74bb2fa7804">   26</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classSistema.html#ae73d63b638cfd0d24a47d74bb2fa7804">idUsuarioLogado</a> = 0;</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classSistema.html#a9fc6be13fcf3fbbbdc3c7e0c49aea9dd">   28</a></span>&#160;    <a class="code" href="classServidor.html">Servidor</a>* <a class="code" href="classSistema.html#a9fc6be13fcf3fbbbdc3c7e0c49aea9dd">servidorVisualizado</a>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="classSistema.html#ae01f40aa2ded52846c6a9d7702688298">   30</a></span>&#160;    <a class="code" href="classCanal.html">Canal</a>* <a class="code" href="classSistema.html#ae01f40aa2ded52846c6a9d7702688298">canalVisualizado</a>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSistema.html#a8d2629a2cd5ec9c304bd57e00d79882f">createUser</a>(<span class="keywordtype">string</span> args);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSistema.html#a2b7a3e702bed4f7dc26996e7bcffb2c9">login</a>(<span class="keywordtype">string</span> args);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSistema.html#a8a4109e22701b10eeddc0b53ce1a801d">disconnect</a>();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSistema.html#a09d76ab11c861b35a0504ec3708983cc">createServer</a>(<span class="keywordtype">string</span> name);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSistema.html#a16c94e4cf5380bc4c05e413f0efb9854">setServerDescription</a>(<span class="keywordtype">string</span> desc);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSistema.html#a1c4d947ce42c9f88ae28b6ede484604e">setServerInviteCode</a>(<span class="keywordtype">string</span> args);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSistema.html#a871f17a5e6f360ed280b3cb2c97a7a49">listServers</a>();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSistema.html#a74c4eedb83cffc87daa9f086a91846d6">removeServer</a>(<span class="keywordtype">string</span> args);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSistema.html#a8d93dbf0b1f85a7483d972040d06673e">enterServer</a>(<span class="keywordtype">string</span> args);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSistema.html#a7adfe2bf239371ad84e61a90daf6b249">leaveServer</a>();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSistema.html#a3621b304dfde121fc15d07c22ac57e7f">listParticipants</a>();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classSistema.html#a8b00a6a8fff54d35e45900304503e8bc">classificadorDeComandos</a>(<span class="keywordtype">string</span> comand);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="classSistema.html#a428bb1b67831d1b5e9fca9022f24958d">   69</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classSistema.html#a428bb1b67831d1b5e9fca9022f24958d">getIdUsuarioLogadoId</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classSistema.html#ae73d63b638cfd0d24a47d74bb2fa7804">idUsuarioLogado</a>; }</div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="classSistema.html#a3b2c18ffbe934bfe933654258379c97c">   72</a></span>&#160;    <a class="code" href="classServidor.html">Servidor</a>* <a class="code" href="classSistema.html#a3b2c18ffbe934bfe933654258379c97c">getServidorVisualizado</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classSistema.html#a9fc6be13fcf3fbbbdc3c7e0c49aea9dd">servidorVisualizado</a>; }</div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="classSistema.html#a809edc7c1313d5e2b870df67bf26c477">   75</a></span>&#160;    <a class="code" href="classCanal.html">Canal</a>* <a class="code" href="classSistema.html#a809edc7c1313d5e2b870df67bf26c477">getCanalVisualidado</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classSistema.html#ae01f40aa2ded52846c6a9d7702688298">canalVisualizado</a>; }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSistema.html#a93457f638a4633ff0111981e30a242fe">setUsuarioLogadoId</a>(<span class="keywordtype">int</span> userId);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSistema.html#ad39aa0fc1725e21e87e527884306c8fa">setServidorViasualizado</a>(<a class="code" href="classServidor.html">Servidor</a>* servidor);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSistema.html#aa03637149532b7cf4db8ae7bb946829a">setCanalVisualizado</a>(<a class="code" href="classCanal.html">Canal</a>* canal);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="classSistema.html#a08346c127b05cc90e47c2210c20dd4cd">   88</a></span>&#160;    <a class="code" href="classSistema.html#a08346c127b05cc90e47c2210c20dd4cd">Sistema</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classSistema.html#ad54ed7e516c1863c9b066029869c4c8e">comandsManager</a>(<span class="keywordtype">string</span> comand);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSistema.html#a386124e0c5f7405b5750098e01e6a0d3">displayAllUsers</a>();</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;};</div>
+<div class="ttc" id="aclassCanal_html"><div class="ttname"><a href="classCanal.html">Canal</a></div><div class="ttdef"><b>Definition:</b> Canal.h:7</div></div>
+<div class="ttc" id="aclassServidor_html"><div class="ttname"><a href="classServidor.html">Servidor</a></div><div class="ttdef"><b>Definition:</b> Servidor.h:11</div></div>
+<div class="ttc" id="aclassSistema_html"><div class="ttname"><a href="classSistema.html">Sistema</a></div><div class="ttdef"><b>Definition:</b> Sistema.h:19</div></div>
+<div class="ttc" id="aclassSistema_html_a08346c127b05cc90e47c2210c20dd4cd"><div class="ttname"><a href="classSistema.html#a08346c127b05cc90e47c2210c20dd4cd">Sistema::Sistema</a></div><div class="ttdeci">Sistema()=default</div><div class="ttdoc">Contrutor padrão da classe.</div></div>
+<div class="ttc" id="aclassSistema_html_a09d76ab11c861b35a0504ec3708983cc"><div class="ttname"><a href="classSistema.html#a09d76ab11c861b35a0504ec3708983cc">Sistema::createServer</a></div><div class="ttdeci">void createServer(string name)</div><div class="ttdoc">Função do comando create-server.</div><div class="ttdef"><b>Definition:</b> Sistema.cpp:186</div></div>
+<div class="ttc" id="aclassSistema_html_a16c94e4cf5380bc4c05e413f0efb9854"><div class="ttname"><a href="classSistema.html#a16c94e4cf5380bc4c05e413f0efb9854">Sistema::setServerDescription</a></div><div class="ttdeci">void setServerDescription(string desc)</div><div class="ttdoc">Função do comando set-server-desc.</div><div class="ttdef"><b>Definition:</b> Sistema.cpp:201</div></div>
+<div class="ttc" id="aclassSistema_html_a1c4d947ce42c9f88ae28b6ede484604e"><div class="ttname"><a href="classSistema.html#a1c4d947ce42c9f88ae28b6ede484604e">Sistema::setServerInviteCode</a></div><div class="ttdeci">void setServerInviteCode(string args)</div><div class="ttdoc">Função do comando et-server-invite-code.</div><div class="ttdef"><b>Definition:</b> Sistema.cpp:231</div></div>
+<div class="ttc" id="aclassSistema_html_a2b7a3e702bed4f7dc26996e7bcffb2c9"><div class="ttname"><a href="classSistema.html#a2b7a3e702bed4f7dc26996e7bcffb2c9">Sistema::login</a></div><div class="ttdeci">void login(string args)</div><div class="ttdoc">Função do comando login.</div><div class="ttdef"><b>Definition:</b> Sistema.cpp:136</div></div>
+<div class="ttc" id="aclassSistema_html_a2f32cee522013a6c18cec2643486a25f"><div class="ttname"><a href="classSistema.html#a2f32cee522013a6c18cec2643486a25f">Sistema::servidores</a></div><div class="ttdeci">vector&lt; Servidor &gt; servidores</div><div class="ttdoc">Lista de servidores do Concorde.</div><div class="ttdef"><b>Definition:</b> Sistema.h:24</div></div>
+<div class="ttc" id="aclassSistema_html_a3621b304dfde121fc15d07c22ac57e7f"><div class="ttname"><a href="classSistema.html#a3621b304dfde121fc15d07c22ac57e7f">Sistema::listParticipants</a></div><div class="ttdeci">void listParticipants()</div><div class="ttdoc">Função do comando list-participants.</div><div class="ttdef"><b>Definition:</b> Sistema.cpp:388</div></div>
+<div class="ttc" id="aclassSistema_html_a386124e0c5f7405b5750098e01e6a0d3"><div class="ttname"><a href="classSistema.html#a386124e0c5f7405b5750098e01e6a0d3">Sistema::displayAllUsers</a></div><div class="ttdeci">void displayAllUsers()</div><div class="ttdoc">Mostra no terminal todos os emails dos usuários.</div><div class="ttdef"><b>Definition:</b> Sistema.cpp:98</div></div>
+<div class="ttc" id="aclassSistema_html_a3b2c18ffbe934bfe933654258379c97c"><div class="ttname"><a href="classSistema.html#a3b2c18ffbe934bfe933654258379c97c">Sistema::getServidorVisualizado</a></div><div class="ttdeci">Servidor * getServidorVisualizado() const</div><div class="ttdoc">Função Get do ponteiro do Servidor que está sendo visualizado no momento.</div><div class="ttdef"><b>Definition:</b> Sistema.h:72</div></div>
+<div class="ttc" id="aclassSistema_html_a428bb1b67831d1b5e9fca9022f24958d"><div class="ttname"><a href="classSistema.html#a428bb1b67831d1b5e9fca9022f24958d">Sistema::getIdUsuarioLogadoId</a></div><div class="ttdeci">int getIdUsuarioLogadoId() const</div><div class="ttdoc">Função Get do id do usuário logado.</div><div class="ttdef"><b>Definition:</b> Sistema.h:69</div></div>
+<div class="ttc" id="aclassSistema_html_a74c4eedb83cffc87daa9f086a91846d6"><div class="ttname"><a href="classSistema.html#a74c4eedb83cffc87daa9f086a91846d6">Sistema::removeServer</a></div><div class="ttdeci">void removeServer(string args)</div><div class="ttdoc">Função do comando remove-server.</div><div class="ttdef"><b>Definition:</b> Sistema.cpp:290</div></div>
+<div class="ttc" id="aclassSistema_html_a7adfe2bf239371ad84e61a90daf6b249"><div class="ttname"><a href="classSistema.html#a7adfe2bf239371ad84e61a90daf6b249">Sistema::leaveServer</a></div><div class="ttdeci">void leaveServer()</div><div class="ttdoc">Função do comando leave-server.</div><div class="ttdef"><b>Definition:</b> Sistema.cpp:376</div></div>
+<div class="ttc" id="aclassSistema_html_a809edc7c1313d5e2b870df67bf26c477"><div class="ttname"><a href="classSistema.html#a809edc7c1313d5e2b870df67bf26c477">Sistema::getCanalVisualidado</a></div><div class="ttdeci">Canal * getCanalVisualidado() const</div><div class="ttdoc">Função Get do ponteiro para o Canal que está sendo visualizado.</div><div class="ttdef"><b>Definition:</b> Sistema.h:75</div></div>
+<div class="ttc" id="aclassSistema_html_a871f17a5e6f360ed280b3cb2c97a7a49"><div class="ttname"><a href="classSistema.html#a871f17a5e6f360ed280b3cb2c97a7a49">Sistema::listServers</a></div><div class="ttdeci">void listServers()</div><div class="ttdoc">Função do comando list-servers.</div><div class="ttdef"><b>Definition:</b> Sistema.cpp:274</div></div>
+<div class="ttc" id="aclassSistema_html_a8a4109e22701b10eeddc0b53ce1a801d"><div class="ttname"><a href="classSistema.html#a8a4109e22701b10eeddc0b53ce1a801d">Sistema::disconnect</a></div><div class="ttdeci">void disconnect()</div><div class="ttdoc">Função do comando disconnect.</div><div class="ttdef"><b>Definition:</b> Sistema.cpp:172</div></div>
+<div class="ttc" id="aclassSistema_html_a8b00a6a8fff54d35e45900304503e8bc"><div class="ttname"><a href="classSistema.html#a8b00a6a8fff54d35e45900304503e8bc">Sistema::classificadorDeComandos</a></div><div class="ttdeci">int classificadorDeComandos(string comand)</div><div class="ttdoc">Classefica qual comando foi digitado.</div><div class="ttdef"><b>Definition:</b> Sistema.cpp:412</div></div>
+<div class="ttc" id="aclassSistema_html_a8d2629a2cd5ec9c304bd57e00d79882f"><div class="ttname"><a href="classSistema.html#a8d2629a2cd5ec9c304bd57e00d79882f">Sistema::createUser</a></div><div class="ttdeci">void createUser(string args)</div><div class="ttdoc">Função do comando create-user.</div><div class="ttdef"><b>Definition:</b> Sistema.cpp:106</div></div>
+<div class="ttc" id="aclassSistema_html_a8d93dbf0b1f85a7483d972040d06673e"><div class="ttname"><a href="classSistema.html#a8d93dbf0b1f85a7483d972040d06673e">Sistema::enterServer</a></div><div class="ttdeci">void enterServer(string args)</div><div class="ttdoc">Função do comando enter-server.</div><div class="ttdef"><b>Definition:</b> Sistema.cpp:320</div></div>
+<div class="ttc" id="aclassSistema_html_a93457f638a4633ff0111981e30a242fe"><div class="ttname"><a href="classSistema.html#a93457f638a4633ff0111981e30a242fe">Sistema::setUsuarioLogadoId</a></div><div class="ttdeci">void setUsuarioLogadoId(int userId)</div><div class="ttdoc">Função Set para o id do usuário logado.</div><div class="ttdef"><b>Definition:</b> Sistema.cpp:3</div></div>
+<div class="ttc" id="aclassSistema_html_a9fc6be13fcf3fbbbdc3c7e0c49aea9dd"><div class="ttname"><a href="classSistema.html#a9fc6be13fcf3fbbbdc3c7e0c49aea9dd">Sistema::servidorVisualizado</a></div><div class="ttdeci">Servidor * servidorVisualizado</div><div class="ttdoc">Ponteiro para o Servidor visualizado no momento.</div><div class="ttdef"><b>Definition:</b> Sistema.h:28</div></div>
+<div class="ttc" id="aclassSistema_html_aa03637149532b7cf4db8ae7bb946829a"><div class="ttname"><a href="classSistema.html#aa03637149532b7cf4db8ae7bb946829a">Sistema::setCanalVisualizado</a></div><div class="ttdeci">void setCanalVisualizado(Canal *canal)</div><div class="ttdoc">Função Set do ponteiro para o Canal em visualização.</div><div class="ttdef"><b>Definition:</b> Sistema.cpp:13</div></div>
+<div class="ttc" id="aclassSistema_html_abb256581959e67fa9018bbbb7dee158f"><div class="ttname"><a href="classSistema.html#abb256581959e67fa9018bbbb7dee158f">Sistema::usuarios</a></div><div class="ttdeci">vector&lt; Usuario &gt; usuarios</div><div class="ttdoc">Lista de usuários do Concorde.</div><div class="ttdef"><b>Definition:</b> Sistema.h:22</div></div>
+<div class="ttc" id="aclassSistema_html_ad39aa0fc1725e21e87e527884306c8fa"><div class="ttname"><a href="classSistema.html#ad39aa0fc1725e21e87e527884306c8fa">Sistema::setServidorViasualizado</a></div><div class="ttdeci">void setServidorViasualizado(Servidor *servidor)</div><div class="ttdoc">Função Set do ponteiro para o Servidor em visualização.</div><div class="ttdef"><b>Definition:</b> Sistema.cpp:8</div></div>
+<div class="ttc" id="aclassSistema_html_ad54ed7e516c1863c9b066029869c4c8e"><div class="ttname"><a href="classSistema.html#ad54ed7e516c1863c9b066029869c4c8e">Sistema::comandsManager</a></div><div class="ttdeci">bool comandsManager(string comand)</div><div class="ttdoc">Função que recebe o comando, identifica qual é o comando e executa sua respectiva função.</div><div class="ttdef"><b>Definition:</b> Sistema.cpp:18</div></div>
+<div class="ttc" id="aclassSistema_html_ae01f40aa2ded52846c6a9d7702688298"><div class="ttname"><a href="classSistema.html#ae01f40aa2ded52846c6a9d7702688298">Sistema::canalVisualizado</a></div><div class="ttdeci">Canal * canalVisualizado</div><div class="ttdoc">Ponteiro para o canal visualiazado no momento.</div><div class="ttdef"><b>Definition:</b> Sistema.h:30</div></div>
+<div class="ttc" id="aclassSistema_html_ae73d63b638cfd0d24a47d74bb2fa7804"><div class="ttname"><a href="classSistema.html#ae73d63b638cfd0d24a47d74bb2fa7804">Sistema::idUsuarioLogado</a></div><div class="ttdeci">int idUsuarioLogado</div><div class="ttdoc">Id do usuário logado no momento da execução.</div><div class="ttdef"><b>Definition:</b> Sistema.h:26</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>
