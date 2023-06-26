@@ -1,11 +1,16 @@
 create-user lucas4cristal lucas123 Lucas Silva
-create-user isa220779 isa1979 Lucas Silva
+create-user isa220779 isa1979 Isabel Cristina
+create-user leo@messi messi123 Lionel Messi
 login lucas4cristal lucas123
 create-server 001-lucas
 set-server-invite-code 001-lucas 0912
+enter-server 001-lucas
 disconnect
 login isa220779 isa1979
 enter-server 001-lucas 0912
-list-servers
+disconnect
+login leo@messi messi123
+enter-server 001-lucas 0912
+list-participants
 disconnect
 quit

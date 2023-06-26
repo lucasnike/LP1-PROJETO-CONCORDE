@@ -30,7 +30,7 @@ bool Sistema::comandsManager(string comand)
 	if (find_element(COMANDOS_DESLOGADOS, comandName) && this->idUsuarioLogado != 0)
 	{
 		cout << str_red("\nUSUÁRIO PRECISA ESTAR DESCONECTADO PARA USAR ESTE COMANDO\n\n");
-		return false;
+		return true;
 	}
 
 	if (find_element(COMANDOS_LOGADOS, comandName) && this->idUsuarioLogado == 0)
@@ -81,6 +81,12 @@ bool Sistema::comandsManager(string comand)
 		break;
 	case (int)ComandsEnum::enter_server:
 		this->enterServer(comand);
+		break;
+	case (int)ComandsEnum::leave_server:
+		this->leaveServer();
+		break;
+	case (int)ComandsEnum::list_participants:
+		this->listParticipants();
 		break;
 	default:
 		break;
@@ -171,6 +177,8 @@ void Sistema::disconnect()
 		{
 			cout << str_green("\nDESCONECTANDO USUÁRIO " + u.getEmail() + "\n\n");
 			this->idUsuarioLogado = 0;
+			this->servidorVisualizado = nullptr;
+			this->canalVisualizado = nullptr;
 		}
 	}
 }
@@ -330,6 +338,7 @@ void Sistema::enterServer(string args)
 				if (!participa)
 				{
 					server.inserirParticipante(this->idUsuarioLogado);
+					cout << "ID usuário inserido 1 = " << this->idUsuarioLogado << endl;
 				}
 				this->servidorVisualizado = &server;
 				cout << str_green("\nENTROU NO SERVIDOR COM SUCESSO\n\n");
@@ -347,6 +356,7 @@ void Sistema::enterServer(string args)
 				if (server.getCondigoConvite() == args)
 				{
 					server.inserirParticipante(this->idUsuarioLogado);
+					cout << "ID usuário inserido 2 = " << this->idUsuarioLogado << endl;
 					this->servidorVisualizado = &server;
 					cout << str_green("\nENTROU NO SERVIDOR COM SUCESSO\n\n");
 					return;
@@ -361,6 +371,42 @@ void Sistema::enterServer(string args)
 	}
 
 	cout << str_red("\nNÃO EXISTE UM SERVIDOR COM O NOME INFORMADO\n\n");
+}
+
+void Sistema::leaveServer()
+{
+	if (this->servidorVisualizado == nullptr)
+	{
+		cout << str_red("\nVOCÊ NÃO ESTÁ VISUALIZANDO NENHUM SERVIDOR\n\n");
+		return;
+	}
+
+	cout << str_green("\nSAINDO DO SERVIDOR '" + this->servidorVisualizado->getNome() + "'\n\n");
+	this->servidorVisualizado = nullptr;
+}
+
+void Sistema::listParticipants()
+{
+	if (this->servidorVisualizado == nullptr)
+	{
+		cout << str_red("\nVOCÊ NÃO ESTÁ CONECTADO A NENHUM SERVIDOR\n\n");
+		return;
+	}
+
+	vector<int> ids = this->servidorVisualizado->getParticipantesIds();
+	cout << str_blue("\nINICIANDO LISTAGEM DE SERVIDORES\n\n");
+	for (int id : ids)
+	{
+		for (Usuario user : this->usuarios)
+		{
+			if (user.getId() == id)
+			{
+				cout << str_purple(user.getNome()) << endl;
+				break;
+			}
+		}
+	}
+	cout << str_blue("\nFINALIZANDO LISTAGEM DE SERVIDORES\n\n");
 }
 
 int Sistema::classificadorDeComandos(string comand)
@@ -390,6 +436,10 @@ int Sistema::classificadorDeComandos(string comand)
 		return (int)ComandsEnum::remove_server;
 	else if (comand == "ENTER-SERVER")
 		return (int)ComandsEnum::enter_server;
+	else if (comand == "LEAVE-SERVER")
+		return (int)ComandsEnum::leave_server;
+	else if (comand == "LIST-PARTICIPANTS")
+		return (int)ComandsEnum::list_participants;
 
 	return 0;
 }

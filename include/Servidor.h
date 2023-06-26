@@ -14,8 +14,9 @@ private:
 	string nome;
 	string descricao;
 	string codigoConvite;
-	vector<Canal*> canais;
+	vector<Canal *> canais;
 	vector<int> participantesIds;
+
 public:
 	Servidor() = default;
 	Servidor(string nome, int dono);
@@ -30,6 +31,8 @@ public:
 	void setDescricao(string descricao);
 	void setCondigoConvite(string codigoConvite);
 
-	void inserirParticipante(int id); 
+	void inserirParticipante(int id);
 	bool participanteExiste(int id);
+
+	vector<int> getParticipantesIds() const { return this->participantesIds; };
 };

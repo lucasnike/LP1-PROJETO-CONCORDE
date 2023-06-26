@@ -33,6 +33,8 @@ private:
 	void listServers();
 	void removeServer(string args);
 	void enterServer(string args);
+	void leaveServer();
+	void listParticipants();
 
 
 	int classificadorDeComandos(string comand);
