@@ -3,7 +3,7 @@
 Antes de tudo gostaria de deixar os link do [repositório do github](https://github.com/lucasnike/LP1-PROJETO-CONCORDE.git), e da [documentação do projeto](https://lucasnike.github.io/LP1-PROJETO-CONCORDE/) para consultas mais detalhadas.
 
 ## Discentes
-| Nome        | Matricula   |
+| Nome        | Matrícula   |
 | ----------- | ----------- |
 | Lucas Vinicius Pereira da Silva      | 20220060694       |
 ## O que é?
