@@ -31,10 +31,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Install doxygen
-      - run: apt install doxygen
-      - name: Run doxygen
-      - run: doxygen
+      - name: Doxygen Action
+        uses: mattnotmitt/doxygen-action@1.9.5
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
