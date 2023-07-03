@@ -12,9 +12,10 @@ private:
 public:
 	/// @brief Construtor padrão
 	CanalVoz() = default;
-	/// @brief Contrutor da classe
-	/// @param ultimaMensagem Ultima mensagem do canal
-	CanalVoz(const Mensagem& ultimaMensagem) : ultimaMensagem(ultimaMensagem) {}
+
+	/// @brief Construtor da classe
+	/// @param nome Nome do canal
+	CanalVoz(string nome);
 
 	virtual string getNome() override;
 	virtual void setNome(string nome) override;
@@ -27,4 +28,7 @@ public:
 	/// @param mensagem Mensagem que será salva
 	void setMensagem(Mensagem mensagem);
 
+	/// @brief Retorna o tipo do canal
+	/// @return "Voz"
+	virtual string getTipo() override;
 };

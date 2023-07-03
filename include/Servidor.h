@@ -27,11 +27,14 @@ public:
 	/// @brief Construtor padrão do Servidor
 	Servidor() = default;
 
+	/// @brief Desaloca os canais alocados
+	~Servidor();
+
 	/// @brief Construtor do servidor
 	/// @param nome Nome do servidor
 	/// @param dono id do usuário que criou o servidor
 	Servidor(string nome, int dono);
-	/// @brief Função Get do atributo usuarioDonoId 
+	/// @brief Função Get do atributo usuarioDonoId
 	/// @return id do criador do usuário
 	int getUsuarioDonoId() const { return this->usuarioDonoId; }
 	/// @brief Função Get do atributo nome
@@ -68,4 +71,8 @@ public:
 	/// @brief Função Get da lista de participantes
 	/// @return Cópia da lista de participantes
 	vector<int> getParticipantesIds() const { return this->participantesIds; };
+
+	/// @brief Função Get da lista de canais do servidor
+	/// @return Retorna a lista de canais
+	vector<Canal *> *getCanais();
 };

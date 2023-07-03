@@ -14,5 +14,8 @@ enum class ComandsEnum
    remove_server = 9,
    enter_server = 10,
    leave_server = 11,
-   list_participants = 12
+   list_participants = 12,
+   create_chanel = 13,
+   list_channels = 14,
+   enter_channel = 15
 };

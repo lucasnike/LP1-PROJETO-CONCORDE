@@ -1,5 +1,13 @@
 #include "Servidor.h"
 
+Servidor::~Servidor()
+{
+	for (Canal *canal : canais)
+	{
+		delete canal;	
+	}
+}
+
 Servidor::Servidor(string nome, int dono)
 {
 	this->nome = nome;
@@ -34,4 +42,9 @@ void Servidor::inserirParticipante(int id)
 bool Servidor::participanteExiste(int id)
 {
     return find_element(this->participantesIds, id);
+}
+
+vector<Canal*> *Servidor::getCanais()
+{
+    return &this->canais;
 }

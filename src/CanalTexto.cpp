@@ -1,4 +1,4 @@
-#include "../include/CanalTexto.h"
+#include "CanalTexto.h"
 
 string CanalTexto::getNome()
 {
@@ -6,6 +6,16 @@ string CanalTexto::getNome()
 }
 
 void CanalTexto::setNome(string nome)
+{
+    this->nome = nome;
+}
+
+string CanalTexto::getTipo()
+{
+    return "Texto";
+}
+
+CanalTexto::CanalTexto(string nome)
 {
     this->nome = nome;
 }

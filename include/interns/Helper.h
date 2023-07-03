@@ -1,10 +1,11 @@
 
+#ifndef HELPER_H
+#define HELPER_H
+
 #include <iostream>
 #include <vector>
 
 using namespace std;
-
-#pragma once
 
 template<typename T>
 bool find_element(vector<T> vetor, T search)
@@ -20,3 +21,25 @@ bool find_element(vector<T> vetor, T search)
 
     return false;
 }
+
+inline string to_Upper_Case(string text)
+{
+    for (char &c : text)
+	{
+		c = std::toupper(c);
+	}
+
+    return text;
+}
+
+inline string to_Lower_Case(string text)
+{
+    for (char &c : text)
+	{
+		c = std::tolower(c);
+	}
+
+    return text;
+}
+
+#endif

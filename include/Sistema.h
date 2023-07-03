@@ -58,6 +58,16 @@ private:
 	void leaveServer();
 	/// @brief Função do comando list-participants
 	void listParticipants();
+	/// @brief Função do comando create-channel
+	/// @param args Argumentos do comando
+	void createChanel(string args);
+
+	/// @brief Lista todos os canais do servidor visualizado
+	void listChannels();
+
+	/// @brief Entra no canal especificado
+	/// @param name Nome do canal
+	void enterChannel(string name);
 
 	/// @brief Classefica qual comando foi digitado 
 	/// @param comand Comando digitado
@@ -86,6 +96,9 @@ public:
 
 	/// @brief Contrutor padrão da classe
 	Sistema() = default;
+
+	/// @brief Delsaco todos os itens alocados dinamicamente
+	~Sistema();
 
 	/// @brief Função que recebe o comando, identifica qual é o comando e executa sua respectiva função
 	/// @param comand Comando digitado pelo usuário

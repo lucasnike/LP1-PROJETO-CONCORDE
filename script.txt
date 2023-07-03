@@ -5,6 +5,11 @@ login lucas4cristal lucas123
 create-server 001-lucas
 set-server-invite-code 001-lucas 0912
 enter-server 001-lucas
+create-channel jurubeba voz
+create-channel dude texto
+create-channel dudalina texto
+create-channel talarico-raspa-canela voz
+list-channels
 disconnect
 login isa220779 isa1979
 enter-server 001-lucas 0912

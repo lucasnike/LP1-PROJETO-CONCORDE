@@ -15,6 +15,11 @@ void Sistema::setCanalVisualizado(Canal *canal)
 	this->canalVisualizado = canal;
 }
 
+Sistema::~Sistema()
+{
+	
+}
+
 bool Sistema::comandsManager(string comand)
 {
 	int string_index = comand.find(" ");
@@ -87,6 +92,12 @@ bool Sistema::comandsManager(string comand)
 		break;
 	case (int)ComandsEnum::list_participants:
 		this->listParticipants();
+		break;
+	case (int)ComandsEnum::create_chanel:
+		this->createChanel(comand);
+		break;
+	case (int)ComandsEnum::list_channels:
+		this->listChannels();
 		break;
 	default:
 		break;
@@ -338,7 +349,6 @@ void Sistema::enterServer(string args)
 				if (!participa)
 				{
 					server.inserirParticipante(this->idUsuarioLogado);
-					cout << "ID usuário inserido 1 = " << this->idUsuarioLogado << endl;
 				}
 				this->servidorVisualizado = &server;
 				cout << str_green("\nENTROU NO SERVIDOR COM SUCESSO\n\n");
@@ -356,7 +366,6 @@ void Sistema::enterServer(string args)
 				if (server.getCondigoConvite() == args)
 				{
 					server.inserirParticipante(this->idUsuarioLogado);
-					cout << "ID usuário inserido 2 = " << this->idUsuarioLogado << endl;
 					this->servidorVisualizado = &server;
 					cout << str_green("\nENTROU NO SERVIDOR COM SUCESSO\n\n");
 					return;
@@ -409,12 +418,135 @@ void Sistema::listParticipants()
 	cout << str_blue("\nFINALIZANDO LISTAGEM DE SERVIDORES\n\n");
 }
 
+void Sistema::createChanel(string args)
+{
+	int index = args.find(' ');
+
+	if (args == "")
+	{
+		cout << str_red("\nESSE COMANDO NECESSITA DE DOIS ARGUMENTOS <NOME DO CANAL>, <TIPO DO CANAL>\n\n");
+		return;
+	}
+	else if (index == -1)
+	{
+		cout << str_red("\nINFORMAR O TIPO DO CANAL É OBRIGATÓRIO\n\n");
+		return;
+	}
+
+	if (this->servidorVisualizado == nullptr)
+	{
+		cout << str_red("\nÉ PRECISO ESTAR VISUALIZANDO ALGUM SERVIDOR PARA CRIAR UM CANAL\n\n");
+		return;
+	}
+
+	if (this->servidorVisualizado->getUsuarioDonoId() != this->idUsuarioLogado)
+	{
+		cout << str_red("\nAPENAS O DONO DO SERVIDO PODE CRIAR O CANAL\n\n");
+		return;
+	}
+
+	string name = args.substr(0, index);
+	args.erase(0, index + 1);
+	string tipo = to_Upper_Case(args);
+
+	Servidor *server = this->servidorVisualizado;
+	vector<Canal *> *canais = server->getCanais();
+
+	for (Canal *canal : *canais)
+	{
+		if (canal->getNome() == name)
+		{
+			cout << str_red("\nJÁ EXISTE UM CANAL COM O NOME INFORMADO\n\n");
+			return;
+		}
+	}
+
+	if (tipo == "VOZ")
+	{
+		CanalVoz *canal = new CanalVoz(name);
+		canais->push_back(canal);
+	}
+	else
+	{
+		CanalTexto *canal = new CanalTexto(name);
+		canais->push_back(canal);
+	}
+
+	cout << str_green("\nCANAL DE " + tipo + " CRIADO COM SUCESSO\n\n");
+}
+
+void Sistema::listChannels()
+{
+	if (this->servidorVisualizado == nullptr)
+	{
+		cout << str_red("\nÉ PRECISO ESTAR VISUALIZANDO ALGUM SERVIDOR PARA CRIAR UM CANAL\n\n");
+		return;
+	}
+
+	int contagem[2] = {0, 0};
+	vector<Canal *> *canais = this->servidorVisualizado->getCanais();
+
+	cout << str_blue("# CANAIS DE VOZ\n\n");
+	for (Canal *canal : *canais)
+	{
+		if (canal->getTipo() == "Voz")
+		{
+			contagem[0]++;
+			cout << str_purple(canal->getNome()) << endl;
+		}
+	}
+	if (contagem[0] == 0)
+		cout << str_red("NENHUM CANAL DE VOZ\n\n");
+
+	cout << str_blue("\n# CANAIS DE TEXTO\n\n");
+	for (Canal *canal : *canais)
+	{
+		if (canal->getTipo() == "Texto")
+		{
+			contagem[1]++;
+			cout << str_purple(canal->getNome()) << endl;
+		}
+	}
+	if (contagem[1] == 0)
+		cout << str_red("NENHUM CANAL DE TEXTO\n");
+}
+
+void Sistema::enterChannel(string name)
+{
+	if (this->servidorVisualizado == nullptr)
+	{
+		cout << str_red("\nÉ PRECISO ESTAR VISUALIZANDO ALGUM SERVIDOR PARA CRIAR UM CANAL\n\n");
+		return;
+	}
+	else if (this->canalVisualizado != nullptr)
+	{
+		cout << str_red("\nSAIA DO CANAL " + this->canalVisualizado->getNome() + " PARA ENTRAR EM OUTRO\n\n");
+		return;
+	}
+	else if (name == "")
+	{
+		cout << str_red("\nESSE COMANDO NECESSITA DE UM ARGUMENTO <NOME DO CANAL>\n\n");
+		return;
+	}
+
+	Servidor *server = this->servidorVisualizado;
+	vector<Canal *> *canais = server->getCanais();
+
+	for (Canal *canal : *canais)
+	{
+		if (canal->getNome() == name)
+		{
+
+			return;
+		}
+	}
+
+	cout << str_red("\nSERVIDOR NÃO EXISTE\n\n");
+}
+
 int Sistema::classificadorDeComandos(string comand)
 {
-	for (char &c : comand)
-	{
-		c = std::toupper(c);
-	}
+	comand = to_Upper_Case(comand);
 
 	if (comand == "LOGIN")
 		return (int)ComandsEnum::login;
@@ -440,6 +572,12 @@ int Sistema::classificadorDeComandos(string comand)
 		return (int)ComandsEnum::leave_server;
 	else if (comand == "LIST-PARTICIPANTS")
 		return (int)ComandsEnum::list_participants;
+	else if (comand == "CREATE-CHANNEL")
+		return (int)ComandsEnum::create_chanel;
+	else if (comand == "LIST-CHANNELS")
+		return (int)ComandsEnum::list_channels;
+	else if (comand == "ENTER-CHANNEL")
+		return (int)ComandsEnum::enter_channel;
 
 	return 0;
 }
