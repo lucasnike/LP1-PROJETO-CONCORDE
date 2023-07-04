@@ -17,14 +17,13 @@ void Sistema::setCanalVisualizado(Canal *canal)
 
 Sistema::~Sistema()
 {
-	
 }
 
 bool Sistema::comandsManager(string comand)
 {
 	int string_index = comand.find(" ");
 
-	string comandName = comand.substr(0, string_index);
+	string comandName = to_Lower_Case(comand.substr(0, string_index));
 	bool existe = find_element(COMANDOS, comandName);
 	if (!existe)
 	{
@@ -99,6 +98,17 @@ bool Sistema::comandsManager(string comand)
 	case (int)ComandsEnum::list_channels:
 		this->listChannels();
 		break;
+	case (int)ComandsEnum::enter_channel:
+		this->enterChannel(comand);
+		break;
+	case (int)ComandsEnum::leave_channel:
+		this->leaveChannel();
+		break;
+	case (int)ComandsEnum::send_message:
+		this->sendMessage(comand);
+		break;
+	case (int)ComandsEnum::list_messages:
+		this->listMessages();
 	default:
 		break;
 	}
@@ -392,6 +402,7 @@ void Sistema::leaveServer()
 
 	cout << str_green("\nSAINDO DO SERVIDOR '" + this->servidorVisualizado->getNome() + "'\n\n");
 	this->servidorVisualizado = nullptr;
+	this->canalVisualizado = nullptr;
 }
 
 void Sistema::listParticipants()
@@ -515,12 +526,12 @@ void Sistema::enterChannel(string name)
 {
 	if (this->servidorVisualizado == nullptr)
 	{
-		cout << str_red("\nÉ PRECISO ESTAR VISUALIZANDO ALGUM SERVIDOR PARA CRIAR UM CANAL\n\n");
+		cout << str_red("\nÉ PRECISO ESTAR VISUALIZANDO ALGUM SERVIDOR PARA ENTRAR EM UM CANAL\n\n");
 		return;
 	}
 	else if (this->canalVisualizado != nullptr)
 	{
-		cout << str_red("\nSAIA DO CANAL " + this->canalVisualizado->getNome() + " PARA ENTRAR EM OUTRO\n\n");
+		cout << str_red("\nSAIA DO CANAL " + this->canalVisualizado->getNome() + " PARA ENTRAR EM " + name + "\n\n");
 		return;
 	}
 	else if (name == "")
@@ -536,12 +547,103 @@ void Sistema::enterChannel(string name)
 	{
 		if (canal->getNome() == name)
 		{
-
+			this->canalVisualizado = canal;
+			cout << str_green("\nENTROU NO CANAL `" + name + "` \n\n");
 			return;
 		}
 	}
 
 	cout << str_red("\nSERVIDOR NÃO EXISTE\n\n");
+}
+
+void Sistema::leaveChannel()
+{
+	if (this->canalVisualizado == nullptr)
+	{
+		cout << str_red("\nNENHUM CANAL VISUALIZADO NO MOMENTO\n\n");
+		return;
+	}
+
+	cout << str_green("\nSAINDO DO CANAL `" + this->canalVisualizado->getNome() + "`\n\n");
+	this->canalVisualizado = nullptr;
+}
+
+void Sistema::sendMessage(string content)
+{
+	if (content == "")
+	{
+		cout << str_red("\nO COMANDO send-message PRECISA DE UM ARGUMENTO <Conteudo da mensgem>\n\n");
+		return;
+	}
+	else if (this->canalVisualizado == nullptr)
+	{
+		cout << str_red("\nÉ PRECISO ENTRAR EM UM CANAL PARA ENVIAR UM MENSAGEM\n\n");
+		return;
+	}
+	time_t now = time(0);
+	tm *dateTime = localtime(&now);
+	char sendDateTime[80]; 
+	strftime(sendDateTime, 80, "%d/%m/%Y - %X", dateTime);
+
+	if (this->canalVisualizado->getTipo() == "Texto")
+	{
+		CanalTexto *canal = dynamic_cast<CanalTexto*>(this->canalVisualizado);
+	
+		canal->mensagens.push_back(Mensagem(sendDateTime, idUsuarioLogado, content));
+
+		cout << str_green("\nMENSAGEM ENVIADA\n\n");
+		return;
+	}
+	else
+	{
+		CanalVoz *canal = dynamic_cast<CanalVoz*>(this->canalVisualizado);
+	
+		canal->setMensagem(Mensagem(sendDateTime, idUsuarioLogado, content));
+		cout << str_green("\nMENSAGEM ENVIADA\n\n");
+		return;
+	}
+}
+
+void Sistema::listMessages()
+{
+	if (this->canalVisualizado == nullptr)
+	{
+		cout << str_red("\nÉ PRECISA ESTAR VISUALIZANDO UM CANAL PARA LISTAR AS MENSAGENS\n\n");
+		return;
+	}
+
+	
+	if (this->canalVisualizado->getTipo() == "Texto")
+	{
+		CanalTexto *canal = dynamic_cast<CanalTexto*>(this->canalVisualizado);
+	
+		if(canal->mensagens.size() == 0)
+		{
+			cout << str_red("\nNENHUM MENSAGEM FOI ENVIADA NESTE CANAL\n\n");
+			return;
+		}
+
+		cout << str_blue("\nLISTANDO MENSAGENS\n\n");
+		for (Mensagem m : canal->mensagens)
+		{
+			cout << m.toString(getUserById(m.getEnviadoPor()).getNome());
+		}
+		cout << str_blue("\nFINAL LISTAGEM MENSAGENS\n\n");
+		return;
+	}
+	else
+	{
+		CanalVoz *canal = dynamic_cast<CanalVoz*>(this->canalVisualizado);
+
+		if (canal->getMensagem().getConteudo() == "")
+		{
+			cout << str_red("\nNENHUM MENSAGEM FOI ENVIADA NESTE CANAL\n\n");
+			return;
+		}
+		
+		
+		return;
+	}
 }
 
 int Sistema::classificadorDeComandos(string comand)
@@ -578,6 +680,24 @@ int Sistema::classificadorDeComandos(string comand)
 		return (int)ComandsEnum::list_channels;
 	else if (comand == "ENTER-CHANNEL")
 		return (int)ComandsEnum::enter_channel;
-
+	else if (comand == "LEAVE-CHANNEL")
+		return (int)ComandsEnum::leave_channel;
+	else if (comand == "SEND-MESSAGE")
+		return (int)ComandsEnum::send_message;
+	else if (comand == "LIST-MESSAGES")
+		return (int)ComandsEnum::list_messages;
 	return 0;
+}
+
+Usuario Sistema::getUserById(int id)
+{
+    for (Usuario user : usuarios)
+	{
+		if (user.getId() == id)
+		{
+			return user;
+		}
+	}
+
+	return Usuario();
 }

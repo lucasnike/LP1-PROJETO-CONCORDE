@@ -17,5 +17,8 @@ enum class ComandsEnum
    list_participants = 12,
    create_chanel = 13,
    list_channels = 14,
-   enter_channel = 15
+   enter_channel = 15,
+   leave_channel = 16,
+   send_message = 17,
+   list_messages = 18
 };

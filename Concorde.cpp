@@ -1,9 +1,11 @@
 ﻿#include "Concorde.h"
+#include <ctime>
 
 using namespace std;
 
 int main()
 {
+
 	Sistema sys;
 	string currentComand;
 

@@ -42,4 +42,9 @@ public:
 	/// @brief Função Set do conteúdo da mensagem
 	/// @param conteudo Conteúdo da mensagem que será salvo
 	void setConteudo(string conteudo);
+
+	/// @brief Formata a mensagem para mostrar na listagem
+	/// @param userNmae nome do usuário que enviou a mensagem
+	/// @return A mensagem formatada
+	string toString(string userNmae);
 };

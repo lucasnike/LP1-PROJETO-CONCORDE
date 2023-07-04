@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <ctime>
+#include <string.h>
 
 #include "Usuario.h"
 #include "Servidor.h"
@@ -69,10 +71,26 @@ private:
 	/// @param name Nome do canal
 	void enterChannel(string name);
 
+	/// @brief Sai do canal atual
+	void leaveChannel();
+
+	/// @brief Função do comando que envia uma mensagem em um canal 
+	/// @param content Conteúdo da mensagem 
+	void sendMessage(string content);
+
+	/// @brief Lista todas as mensagens envidas no canal
+	void listMessages();
+
 	/// @brief Classefica qual comando foi digitado 
 	/// @param comand Comando digitado
 	/// @return Indice da Enumeração que identifica os comandos
 	int classificadorDeComandos(string comand);
+
+
+	/// @brief Busca um usuário pelo id
+	/// @param id id do usuário
+	/// @return Usuario do id especificado
+	Usuario getUserById(int id);
 public:
 	/// @brief Função Get do id do usuário logado
 	/// @return Id do usuário logado

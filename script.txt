@@ -13,9 +13,21 @@ list-channels
 disconnect
 login isa220779 isa1979
 enter-server 001-lucas 0912
+leave-channel
+enter-channel dude
+send-message hello
+send-message i am a man
+send-message have a nice mind
+send-message fuck
 disconnect
 login leo@messi messi123
 enter-server 001-lucas 0912
+enter-channel dude
+send-message hi
+send-message i am leo messi
+send-message how are you
+send-message i am fine
+list-messages
 list-participants
 disconnect
-quit
+Quit
