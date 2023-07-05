@@ -51,7 +51,13 @@ Por fim, execute o comando seguinte para executar o sistema:
 
 ### Comandos para usar ao enquanto estiver em um servidor
 
-|       Comando       |        1°        |  2°   |  3°   | Descrição                                |
-| :-----------------: | :--------------: | :---: | :---: | :--------------------------------------- |
-|   `leave-server`    | Nome do servidor |       |       | Sai do servidor                          |
-| `list-participants` |                  |       |       | Lista todos os participantes do servidor |
+|       Comando       |          1°          |      2°       |  3°   | Descrição                                                             |
+| :-----------------: | :------------------: | :-----------: | :---: | :-------------------------------------------------------------------- |
+|   `leave-server`    |   Nome do servidor   |               |       | Sai do servidor                                                       |
+| `list-participants` |                      |               |       | Lista todos os participantes do servidor                              |
+|  `create-channel`   |    Nome do canal     | Tipo do canal |       | Cria um novo canal no servidor                                        |
+|   `list-channels`   |                      |               |       | Lista todos os canais do servidor por tipo                            |
+|   `enter-channel`   |    Nome do canal     |               |       | Entra em um canal                                                     |
+|   `leave-channel`   |                      |               |       | Sai do canal em visualização                                          |
+|   `send-message`    | Conteúdo da mensagem |               |       | Envia uma mensagem no canal em visualização                           |
+|   `list-messages`   |                      |               |       | Lista, com o nome do usuário e o horário do envio, todas as mensagens |
