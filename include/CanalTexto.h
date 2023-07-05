@@ -9,8 +9,15 @@ class CanalTexto : public Canal
 public:
 	/// @brief Lista com todas as mensagens do canal
 	vector<Mensagem> mensagens;
+
 	// Herdado por meio de Canal
+
+	/// @brief Função Get do atributo nome da classe base
+	/// @return Nome do canal
 	virtual string getNome() override;
+
+	/// @brief Função Set do atributo nome da classe base
+	/// @param nome Nome que será salvo
 	virtual void setNome(string nome) override;
 
 	/// @brief Retorta o tipo do canal

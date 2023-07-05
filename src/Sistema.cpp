@@ -15,10 +15,6 @@ void Sistema::setCanalVisualizado(Canal *canal)
 	this->canalVisualizado = canal;
 }
 
-Sistema::~Sistema()
-{
-}
-
 bool Sistema::comandsManager(string comand)
 {
 	int string_index = comand.find(" ");
@@ -34,7 +30,7 @@ bool Sistema::comandsManager(string comand)
 	if (find_element(COMANDOS_DESLOGADOS, comandName) && this->idUsuarioLogado != 0)
 	{
 		cout << str_red("\nUSUÁRIO PRECISA ESTAR DESCONECTADO PARA USAR ESTE COMANDO\n\n");
-		return true;
+		return false;
 	}
 
 	if (find_element(COMANDOS_LOGADOS, comandName) && this->idUsuarioLogado == 0)
@@ -588,10 +584,11 @@ void Sistema::sendMessage(string content)
 	if (this->canalVisualizado->getTipo() == "Texto")
 	{
 		CanalTexto *canal = dynamic_cast<CanalTexto*>(this->canalVisualizado);
-	
-		canal->mensagens.push_back(Mensagem(sendDateTime, idUsuarioLogado, content));
+		Mensagem m = Mensagem(sendDateTime, idUsuarioLogado, content);
+		canal->mensagens.push_back(m);
 
 		cout << str_green("\nMENSAGEM ENVIADA\n\n");
+
 		return;
 	}
 	else
@@ -629,6 +626,7 @@ void Sistema::listMessages()
 			cout << m.toString(getUserById(m.getEnviadoPor()).getNome());
 		}
 		cout << str_blue("\nFINAL LISTAGEM MENSAGENS\n\n");
+		// delete canal;
 		return;
 	}
 	else
@@ -640,7 +638,13 @@ void Sistema::listMessages()
 			cout << str_red("\nNENHUM MENSAGEM FOI ENVIADA NESTE CANAL\n\n");
 			return;
 		}
+		cout << str_blue("\nULTIMA MENSAGEN\n\n");
+
+		Mensagem ultima = canal->getMensagem();
+		cout << ultima.toString(getUserById(ultima.getEnviadoPor()).getNome());
 		
+		cout << endl;
+		// delete canal;
 		
 		return;
 	}

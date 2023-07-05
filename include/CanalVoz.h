@@ -17,7 +17,12 @@ public:
 	/// @param nome Nome do canal
 	CanalVoz(string nome);
 
+	/// @brief Função Get do Nome do canal
+	/// @return Nome do canal
 	virtual string getNome() override;
+
+	/// @brief Função Set do nome do canal
+	/// @param nome Nome do canal que será salvo
 	virtual void setNome(string nome) override;
 
 	/// @brief Função que retorna a última mensagem enviada no canal

@@ -3,8 +3,8 @@
 Servidor::~Servidor()
 {
 	for (Canal *canal : canais)
-	{
-		delete canal;	
+	{	
+		delete canal;
 	}
 }
 

@@ -41,3 +41,5 @@ CMakeCache.txt
 CMakepresets.json
 Makefile
 concorde
+
+clang-tidy

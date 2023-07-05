@@ -17,6 +17,7 @@ private:
 public:
 	/// @brief Contrutor padrão da classe Mensagem
 	Mensagem() = default;
+
 	/// @brief Construtor da classe Mensagem
 	/// @param dataHora Data e hora da mensagem
 	/// @param enviadoPor Id do usuário que enviou a mensagem
@@ -26,9 +27,11 @@ public:
 	/// @brief Função Get do atributo Data e hora
 	/// @return Data e hora do envio da mensagem
 	string getDataHora() const { return this->dataHora; }
+
 	/// @brief Função Get do atributo que salva o id do usuário que enviou
 	/// @return Id do usuário que enviou a mensagem
 	int getEnviadoPor() const { return this->enviadoPor; }
+
 	/// @brief Função Get do atributo conteúdo da mensagem
 	/// @return Texto do conteúdo da mensagem
 	string getConteudo() const { return this->conteudo; }
@@ -36,9 +39,11 @@ public:
 	/// @brief Função Set do data e hora
 	/// @param dataHora Data e hora que será salva no atributo
 	void setDataHora(string dataHora);
+
 	/// @brief Função Set do id do usuário que enviou a mensagem
 	/// @param userId 
 	void setEnviadoPor(int userId);
+	
 	/// @brief Função Set do conteúdo da mensagem
 	/// @param conteudo Conteúdo da mensagem que será salvo
 	void setConteudo(string conteudo);

@@ -16,6 +16,8 @@ public:
 	/// @param nome Nome do cancal
 	Canal(const string& nome) : nome(nome) {}
 
+	/// @brief Destrutor virtual do Canal
+	virtual ~Canal() = default;
 
 	/// @brief Função Get para o nome do canal
 	/// @return Nome do canal

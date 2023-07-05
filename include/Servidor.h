@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "Canal.h"
+#include "CanalTexto.h"
 #include "./interns/Helper.h"
 
 using namespace std;
@@ -34,15 +35,19 @@ public:
 	/// @param nome Nome do servidor
 	/// @param dono id do usuário que criou o servidor
 	Servidor(string nome, int dono);
+
 	/// @brief Função Get do atributo usuarioDonoId
 	/// @return id do criador do usuário
 	int getUsuarioDonoId() const { return this->usuarioDonoId; }
+
 	/// @brief Função Get do atributo nome
 	/// @return Retorna o nome do servidor
 	string getNome() const { return this->nome; }
+
 	/// @brief Função Get do atributo descricao
 	/// @return Retorna descrição do servidor
 	string getDescricao() const { return this->descricao; }
+
 	/// @brief Função Get do atributo codigoConvite
 	/// @return Retorna o código do convite do servidor
 	string getCondigoConvite() const { return this->codigoConvite; }
@@ -50,12 +55,15 @@ public:
 	/// @brief Função Set do atributo usuarioDonoId
 	/// @param userId Valor que será salvo no atributo usuarioDonoId
 	void setUsuarioDonoId(int userId);
+
 	/// @brief Função set do atributo nome
 	/// @param nome Valor que será salvo no atributo nome
 	void setNome(string nome);
+
 	/// @brief Função Set do atributo descricao
 	/// @param descricao Valor que será salvo no atributo descricao
 	void setDescricao(string descricao);
+
 	/// @brief Função set do atributo codigoConvite
 	/// @param codigoConvite Valor que será salvo no atributo codigoConvite
 	void setCondigoConvite(string codigoConvite);
@@ -63,6 +71,7 @@ public:
 	/// @brief Inseri um usuário à lista de participantes
 	/// @param id id do usuário que será inserido
 	void inserirParticipante(int id);
+	
 	/// @brief Função que verifica se um usuário existe na lista de participantes
 	/// @param id Id do usuário que será procurado
 	/// @return Retorna valor booleano indicando se existe ou não o participante no servidor
