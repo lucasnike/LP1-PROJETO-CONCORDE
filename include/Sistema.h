@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <ctime>
 #include <string.h>
+#include <fstream>
 
 #include "Usuario.h"
 #include "Servidor.h"
@@ -30,10 +31,10 @@ private:
 	int idUsuarioLogado = 0;
 
 	/// @brief Ponteiro para o Servidor visualizado no momento
-	Servidor* servidorVisualizado;
+	Servidor* servidorVisualizado = nullptr;
 
 	/// @brief Ponteiro para o canal visualiazado no momento
-	Canal* canalVisualizado;
+	Canal* canalVisualizado = nullptr;
 
 	/// @brief Função do comando create-user
 	/// @param args Argumentos do comando
@@ -101,6 +102,11 @@ private:
 	/// @return Indice da Enumeração que identifica os comandos
 	int classificadorDeComandos(string comand);
 
+	/// @brief Função que guarda todos os usuários em disco
+	void salvarUsuarios();
+
+	/// @brief Função que guarda todos os servidores em disco
+	void salvarServidores();
 
 	/// @brief Busca um usuário pelo id
 	/// @param id id do usuário
@@ -142,4 +148,7 @@ public:
 	
 	/// @brief Mostra no terminal todos os emails dos usuários
 	void displayAllUsers();
+
+	/// @brief Salva o estado de todos os elementos do programa
+	void salvar();
 };

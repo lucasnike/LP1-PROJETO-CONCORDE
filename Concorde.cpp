@@ -22,6 +22,5 @@ int main()
 			break;
 		}
 	}
-
 	cout << str_cyan("\nSAINDO DO CONCORDE\n\n");
 }

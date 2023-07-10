@@ -18,6 +18,7 @@ void Sistema::setCanalVisualizado(Canal *canal)
 bool Sistema::comandsManager(string comand)
 {
 	int string_index = comand.find(" ");
+	bool salvar = false;
 
 	string comandName = to_Lower_Case(comand.substr(0, string_index));
 	bool existe = find_element(COMANDOS, comandName);
@@ -26,17 +27,19 @@ bool Sistema::comandsManager(string comand)
 		cout << str_red("\nCOMANDO NÃO EXISTE\n\n");
 		return false;
 	}
-
-	if (find_element(COMANDOS_DESLOGADOS, comandName) && this->idUsuarioLogado != 0)
+	else if (find_element(COMANDOS_LOGADOS, comandName) && this->idUsuarioLogado == 0)
+	{
+		cout << str_red("\nUSUÁRIO PRECISA ESTAR CONECTADO PARA USAR ESTE COMANDO\n\n");
+		return false;
+	}
+	else if (find_element(COMANDOS_DESLOGADOS, comandName) && this->idUsuarioLogado != 0)
 	{
 		cout << str_red("\nUSUÁRIO PRECISA ESTAR DESCONECTADO PARA USAR ESTE COMANDO\n\n");
 		return false;
 	}
-
-	if (find_element(COMANDOS_LOGADOS, comandName) && this->idUsuarioLogado == 0)
+	else if (find_element(COMANDOS_SALVAR, comandName))
 	{
-		cout << str_red("\nUSUÁRIO PRECISA ESTAR CONECTADO PARA USAR ESTE COMANDO\n\n");
-		return false;
+		salvar = true;
 	}
 
 	int comandId = classificadorDeComandos(comandName);
@@ -109,6 +112,11 @@ bool Sistema::comandsManager(string comand)
 		break;
 	}
 
+	if (salvar)
+	{
+		this->salvar();
+	}
+
 	return false;
 }
 
@@ -118,6 +126,12 @@ void Sistema::displayAllUsers()
 	{
 		cout << user.getId() << " " << user.getEmail() << endl;
 	}
+}
+
+void Sistema::salvar()
+{
+	this->salvarUsuarios();
+	this->salvarServidores();
 }
 
 void Sistema::createUser(string args)
@@ -525,12 +539,12 @@ void Sistema::enterChannel(string name)
 		cout << str_red("\nÉ PRECISO ESTAR VISUALIZANDO ALGUM SERVIDOR PARA ENTRAR EM UM CANAL\n\n");
 		return;
 	}
-	else if (this->canalVisualizado != nullptr)
+	if (this->canalVisualizado != nullptr)
 	{
 		cout << str_red("\nSAIA DO CANAL " + this->canalVisualizado->getNome() + " PARA ENTRAR EM " + name + "\n\n");
 		return;
 	}
-	else if (name == "")
+	if (name == "")
 	{
 		cout << str_red("\nESSE COMANDO NECESSITA DE UM ARGUMENTO <NOME DO CANAL>\n\n");
 		return;
@@ -578,12 +592,12 @@ void Sistema::sendMessage(string content)
 	}
 	time_t now = time(0);
 	tm *dateTime = localtime(&now);
-	char sendDateTime[80]; 
+	char sendDateTime[80];
 	strftime(sendDateTime, 80, "%d/%m/%Y - %X", dateTime);
 
 	if (this->canalVisualizado->getTipo() == "Texto")
 	{
-		CanalTexto *canal = dynamic_cast<CanalTexto*>(this->canalVisualizado);
+		CanalTexto *canal = dynamic_cast<CanalTexto *>(this->canalVisualizado);
 		Mensagem m = Mensagem(sendDateTime, idUsuarioLogado, content);
 		canal->mensagens.push_back(m);
 
@@ -593,8 +607,8 @@ void Sistema::sendMessage(string content)
 	}
 	else
 	{
-		CanalVoz *canal = dynamic_cast<CanalVoz*>(this->canalVisualizado);
-	
+		CanalVoz *canal = dynamic_cast<CanalVoz *>(this->canalVisualizado);
+
 		canal->setMensagem(Mensagem(sendDateTime, idUsuarioLogado, content));
 		cout << str_green("\nMENSAGEM ENVIADA\n\n");
 		return;
@@ -609,12 +623,11 @@ void Sistema::listMessages()
 		return;
 	}
 
-	
 	if (this->canalVisualizado->getTipo() == "Texto")
 	{
-		CanalTexto *canal = dynamic_cast<CanalTexto*>(this->canalVisualizado);
-	
-		if(canal->mensagens.size() == 0)
+		CanalTexto *canal = dynamic_cast<CanalTexto *>(this->canalVisualizado);
+
+		if (canal->mensagens.size() == 0)
 		{
 			cout << str_red("\nNENHUM MENSAGEM FOI ENVIADA NESTE CANAL\n\n");
 			return;
@@ -631,7 +644,7 @@ void Sistema::listMessages()
 	}
 	else
 	{
-		CanalVoz *canal = dynamic_cast<CanalVoz*>(this->canalVisualizado);
+		CanalVoz *canal = dynamic_cast<CanalVoz *>(this->canalVisualizado);
 
 		if (canal->getMensagem().getConteudo() == "")
 		{
@@ -642,10 +655,10 @@ void Sistema::listMessages()
 
 		Mensagem ultima = canal->getMensagem();
 		cout << ultima.toString(getUserById(ultima.getEnviadoPor()).getNome());
-		
+
 		cout << endl;
 		// delete canal;
-		
+
 		return;
 	}
 }
@@ -693,9 +706,121 @@ int Sistema::classificadorDeComandos(string comand)
 	return 0;
 }
 
+void Sistema::salvarUsuarios()
+{
+	string file = "./data/usuarios.txt";
+	ofstream writter;
+	writter.open(file);
+
+	if (!writter)
+	{
+		return;
+	}
+	int size = usuarios.size();
+	writter << size << endl;
+
+	for (int i = 0; i < size; i++)
+	{
+		Usuario user = usuarios[i];
+
+		writter << user.getId() << endl;
+		writter << user.getNome() << endl;
+		writter << user.getEmail() << endl;
+		writter << user.getSenha();
+
+		if (i != size - 1)
+		{
+			writter << endl;
+		}
+	}
+
+	writter.close();
+}
+
+void Sistema::salvarServidores()
+{
+	string file = "./data/servidores.txt";
+	ofstream writter;
+	writter.open(file);
+
+	if (!writter)
+	{
+		cout << str_red("\nArquivo inválido\n\n");
+		return;
+	}
+
+	int size = servidores.size();
+	for (int i = 0; i < size; i++)
+	{
+		Servidor &server = servidores.at(i);
+
+		writter << server.getUsuarioDonoId() << endl;
+		writter << server.getNome() << endl;
+		writter << server.getDescricao() << endl;
+		writter << server.getCondigoConvite() << endl;
+		writter << server.getParticipantesIds().size() << endl;
+
+		vector<int> ids = server.getParticipantesIds();
+		for (int j = 0; j < ids.size(); j++)
+		{
+			writter << ids[j] << endl;
+		}
+
+		vector<Canal *> *canais = server.getCanais();
+
+		writter << canais->size() << endl;
+
+		for (int y = 0; y < canais->size(); y++)
+		{
+			Canal *canal = canais->at(y);
+
+			if (canal->getTipo() == "Texto")
+			{
+				CanalTexto *canalTexto = dynamic_cast<CanalTexto *>(canal);
+
+				writter << canalTexto->getNome() << endl;
+				writter << "TEXTO" << endl;
+
+				writter << canalTexto->mensagens.size() << endl;
+
+				vector<Mensagem> mensagens = canalTexto->mensagens;
+
+				for (int k = 0; k < mensagens.size(); k++)
+				{
+					Mensagem mensagem = mensagens[k];
+
+					writter << mensagem.getEnviadoPor() << endl;
+					writter << mensagem.getDataHora() << endl;
+					writter << mensagem.getConteudo() << endl;
+				}
+			}
+			else
+			{
+				CanalVoz *canalVoz = dynamic_cast<CanalVoz *>(canal);
+
+				writter << canalVoz->getNome() << endl;
+				writter << "VOZ" << endl;
+				if (canalVoz->getMensagem().getConteudo() != "")
+				{
+					writter << 1 << endl;
+					writter << canalVoz->getMensagem().getEnviadoPor() << endl;
+					writter << canalVoz->getMensagem().getDataHora() << endl;
+					writter << canalVoz->getMensagem().getConteudo() << endl;
+				}
+				else
+				{
+					writter << 0 << endl;
+				}
+			}
+		}
+	}
+
+	writter.close();
+}
+
 Usuario Sistema::getUserById(int id)
 {
-    for (Usuario user : usuarios)
+	for (Usuario user : usuarios)
 	{
 		if (user.getId() == id)
 		{

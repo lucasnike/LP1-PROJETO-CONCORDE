@@ -3,29 +3,26 @@ create-user isa220779 isa1979 Isabel Cristina
 create-user leo@messi messi123 Lionel Messi
 login lucas_vini lucas123
 create-server 001-lucas
+set-server-desc 001-lucas maoksdn  naosndoajns
 set-server-invite-code 001-lucas 0912
 enter-server 001-lucas
+create-channel texto-1 texto
 create-channel voz-1 voz
-create-channel texo-1 texto
-list-channels
+enter-channel texto-1
+send-message Olá
+send-message Essas são minhas primeiras mensagens
+send-message Neste canal
+send-message Que é de texto
 disconnect
 login isa220779 isa1979
 enter-server 001-lucas 0912
-enter-channel texo-1
-send-message Olá
-send-message Como você se chama
-list-messages
 disconnect
 login leo@messi messi123
 enter-server 001-lucas 0912
-enter-channel texo-1
+enter-channel voz-1
 send-message Oi
 send-message Eu sou Leo messi
 send-message Jogador de futebol
 send-message Quem é você ?
-list-messages
-leave-channel
-enter-channel voz-1
-list-participants
 disconnect
-Quit
+quit
