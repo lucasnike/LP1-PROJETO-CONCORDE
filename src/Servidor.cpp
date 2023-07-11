@@ -48,3 +48,8 @@ vector<Canal*> *Servidor::getCanais()
 {
     return &this->canais;
 }
+
+void Servidor::addParticipante(int id)
+{
+	this->participantesIds.push_back(id);
+}

@@ -84,4 +84,8 @@ public:
 	/// @brief Função Get da lista de canais do servidor
 	/// @return Retorna a lista de canais
 	vector<Canal *> *getCanais();
+
+	/// @brief Adiciona um participante ao servidor
+	/// @param id Id do participante
+	void addParticipante(int id);
 };

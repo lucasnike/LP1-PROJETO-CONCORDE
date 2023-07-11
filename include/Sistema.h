@@ -2,8 +2,9 @@
 #include <vector>
 #include <algorithm>
 #include <ctime>
-#include <string.h>
+// #include <string.h>
 #include <fstream>
+#include <string>
 
 #include "Usuario.h"
 #include "Servidor.h"
@@ -113,6 +114,12 @@ private:
 	/// @return Usuario do id especificado
 	Usuario getUserById(int id);
 
+	/// @brief Carrega todos os usuários salvos no arquivo para o sistema
+	void carregarUsuarios();
+
+	/// @brief Carrega todos os servidores salvos no arquivo para o sistema
+	void carregarServidores();
+
 public:
 	/// @brief Função Get do id do usuário logado
 	/// @return Id do usuário logado
@@ -151,4 +158,7 @@ public:
 
 	/// @brief Salva o estado de todos os elementos do programa
 	void salvar();
+
+	/// @brief Lê os arquivos que salvam o estado da aplicação e carregam no sistema
+	void carregar();
 };

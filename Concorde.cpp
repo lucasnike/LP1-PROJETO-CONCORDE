@@ -11,6 +11,8 @@ int main()
 
 	bool quiting = false;
 
+	sys.carregar();
+
 	while (true)
 	{
 		getline(cin, currentComand);

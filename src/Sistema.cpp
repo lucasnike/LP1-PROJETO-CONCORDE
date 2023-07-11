@@ -131,7 +131,13 @@ void Sistema::displayAllUsers()
 void Sistema::salvar()
 {
 	this->salvarUsuarios();
-	this->salvarServidores();
+	// this->salvarServidores();
+}
+
+void Sistema::carregar()
+{
+	this->idUsuarioLogado = 0;
+	this->carregarUsuarios();
 }
 
 void Sistema::createUser(string args)
@@ -216,7 +222,7 @@ void Sistema::disconnect()
 
 void Sistema::createServer(string name)
 {
-	for (Servidor server : this->servidores)
+	for (Servidor &server : this->servidores)
 	{
 		if (server.getNome() == name)
 		{
@@ -726,13 +732,9 @@ void Sistema::salvarUsuarios()
 		writter << user.getId() << endl;
 		writter << user.getNome() << endl;
 		writter << user.getEmail() << endl;
-		writter << user.getSenha();
-
-		if (i != size - 1)
-		{
-			writter << endl;
-		}
+		writter << user.getSenha() << endl;
 	}
+	writter << this->idUsuarioLogado << endl;
 
 	writter.close();
 }
@@ -753,8 +755,17 @@ void Sistema::salvarServidores()
 	for (int i = 0; i < size; i++)
 	{
 		Servidor &server = servidores.at(i);
+		cout << "123 milhasz\n";
 
-		writter << server.getUsuarioDonoId() << endl;
+		cout << server.getNome() << endl;
+
+		writter << server.getUsuarioDonoId();
+		if (&server == servidorVisualizado)
+		{
+			writter << " View";
+		}
+		writter << endl;
+		
 		writter << server.getNome() << endl;
 		writter << server.getDescricao() << endl;
 		writter << server.getCondigoConvite() << endl;
@@ -829,4 +840,113 @@ Usuario Sistema::getUserById(int id)
 	}
 
 	return Usuario();
+}
+
+void Sistema::carregarUsuarios()
+{
+	string file = "./data/usuarios.txt";
+	ifstream reader;
+	reader.open(file);
+
+	if (!reader.is_open())
+	{
+		cout << str_red("\nNÃO FOI POSSÍVEL CARREGAR OS DADOS SALVOS\n\n");
+		return;
+	}
+
+	while (!reader.eof())
+	{
+		string line;
+
+		getline(reader, line);
+
+		// Sai da função pois o arquivo está vazio
+		if (line == "")
+		{
+			return;
+		}
+
+		int nUsers = stoi(line);
+
+		for (int i = 0; i < nUsers; i++)
+		{
+			getline(reader, line);
+			int id = stoi(line);
+
+			getline(reader, line);
+			string name = line;
+
+			getline(reader, line);
+			string email = line;
+
+			getline(reader, line);
+			string password = line;
+
+			Usuario user(id, name, email, password);
+			this->usuarios.push_back(user);
+		}
+
+		getline(reader, line);
+		int logedUser = stoi(line);
+		this->idUsuarioLogado = logedUser;
+	}
+
+	reader.close();
+}
+
+void Sistema::carregarServidores()
+{
+	string file = "./data/servidores.txt";
+	ifstream reader;
+	reader.open(file);
+
+	if (!reader.is_open())
+	{
+		cout << str_red("\nNÃO FOI POSSÍVEL CARREGAR OS DADOS SALVOS\n\n");
+		return;
+	}
+
+	while (!reader.eof())
+	{
+		string line;
+
+		getline(reader, line);
+		int creator = stoi(line);
+
+		getline(reader, line);
+		string name = line;
+
+		getline(reader, line);
+		string desc = line;
+
+		getline(reader, line);
+		string inviteCode = line;
+
+		Servidor server;
+		server.setUsuarioDonoId(creator);
+		server.setNome(name);
+		server.setDescricao(desc);
+		server.setCondigoConvite(inviteCode);
+
+		getline(reader, line);
+		int nUsers = stoi(line);
+
+		for (int i = 0; i < nUsers; i++)
+		{
+			getline(reader, line);
+			int id = stoi(line);
+			server.addParticipante(id);
+		}
+
+		getline(reader, line);
+		int nChannels = stoi(line);
+
+		for (int i = 0; i < nChannels; i++)
+		{
+			
+		}
+		
+	}
+
+	reader.close();
 }
