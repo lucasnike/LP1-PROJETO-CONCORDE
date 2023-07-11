@@ -128,18 +128,10 @@ bool Sistema::comandsManager(string comand)
 	return false;
 }
 
-void Sistema::displayAllUsers()
-{
-	for (Usuario user : usuarios)
-	{
-		cout << user.getId() << " " << user.getEmail() << endl;
-	}
-}
-
 void Sistema::salvar()
 {
 	this->salvarUsuarios();
-	// this->salvarServidores();
+	this->salvarServidores();
 }
 
 void Sistema::carregar()
@@ -767,8 +759,6 @@ void Sistema::salvarServidores()
 	for (int i = 0; i < size; i++)
 	{
 		Servidor *server = servidores.at(i);
-
-		cout << server->getNome() << endl;
 
 		writter << server->getUsuarioDonoId();
 		if (server == servidorVisualizado)

@@ -156,9 +156,6 @@ public:
 	/// @param comand Comando digitado pelo usuário
 	/// @return Valor booleano que define se a aplicação deve fechar ou não
 	bool comandsManager(string comand);
-	
-	/// @brief Mostra no terminal todos os emails dos usuários
-	void displayAllUsers();
 
 	/// @brief Salva o estado de todos os elementos do programa
 	void salvar();
