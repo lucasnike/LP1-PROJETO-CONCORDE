@@ -1,35 +1,325 @@
-3 View
+1
 001-lucas
 maoksdn  naosndoajns
 0912
+3
+1
 2
 3
-2
 2
 texto-1
 TEXTO
-4
-3
-11/07/2023 - 12:37:42
+92
+1
+11/07/2023 - 20:48:24
 Olá
-3
-11/07/2023 - 12:37:42
+1
+11/07/2023 - 20:48:24
 Essas são minhas primeiras mensagens
-3
-11/07/2023 - 12:37:43
+1
+11/07/2023 - 20:48:24
 Neste canal
-3
-11/07/2023 - 12:37:43
+1
+11/07/2023 - 20:48:24
+Que é de texto
+1
+11/07/2023 - 20:48:35
+Olá
+1
+11/07/2023 - 20:48:35
+Essas são minhas primeiras mensagens
+1
+11/07/2023 - 20:48:35
+Neste canal
+1
+11/07/2023 - 20:48:35
+Que é de texto
+1
+11/07/2023 - 20:50:55
+Olá
+1
+11/07/2023 - 20:50:55
+Essas são minhas primeiras mensagens
+1
+11/07/2023 - 20:50:55
+Neste canal
+1
+11/07/2023 - 20:50:55
+Que é de texto
+1
+11/07/2023 - 20:52:12
+Olá
+1
+11/07/2023 - 20:52:12
+Essas são minhas primeiras mensagens
+1
+11/07/2023 - 20:52:12
+Neste canal
+1
+11/07/2023 - 20:52:12
+Que é de texto
+1
+11/07/2023 - 20:52:12
+Olá
+1
+11/07/2023 - 20:52:12
+Essas são minhas primeiras mensagens
+1
+11/07/2023 - 20:52:12
+Neste canal
+1
+11/07/2023 - 20:52:12
+Que é de texto
+1
+11/07/2023 - 20:52:12
+Olá
+1
+11/07/2023 - 20:52:12
+Essas são minhas primeiras mensagens
+1
+11/07/2023 - 20:52:12
+Neste canal
+1
+11/07/2023 - 20:52:12
+Que é de texto
+1
+11/07/2023 - 20:52:12
+Olá
+1
+11/07/2023 - 20:52:12
+Essas são minhas primeiras mensagens
+1
+11/07/2023 - 20:52:12
+Neste canal
+1
+11/07/2023 - 20:52:12
+Que é de texto
+1
+11/07/2023 - 20:52:12
+Olá
+1
+11/07/2023 - 20:52:12
+Essas são minhas primeiras mensagens
+1
+11/07/2023 - 20:52:12
+Neste canal
+1
+11/07/2023 - 20:52:12
+Que é de texto
+1
+11/07/2023 - 20:52:12
+Olá
+1
+11/07/2023 - 20:52:12
+Essas são minhas primeiras mensagens
+1
+11/07/2023 - 20:52:12
+Neste canal
+1
+11/07/2023 - 20:52:12
+Que é de texto
+1
+11/07/2023 - 20:52:12
+Olá
+1
+11/07/2023 - 20:52:12
+Essas são minhas primeiras mensagens
+1
+11/07/2023 - 20:52:12
+Neste canal
+1
+11/07/2023 - 20:52:12
+Que é de texto
+1
+11/07/2023 - 20:52:12
+Olá
+1
+11/07/2023 - 20:52:12
+Essas são minhas primeiras mensagens
+1
+11/07/2023 - 20:52:12
+Neste canal
+1
+11/07/2023 - 20:52:12
+Que é de texto
+1
+11/07/2023 - 20:52:12
+Olá
+1
+11/07/2023 - 20:52:12
+Essas são minhas primeiras mensagens
+1
+11/07/2023 - 20:52:12
+Neste canal
+1
+11/07/2023 - 20:52:12
+Que é de texto
+1
+11/07/2023 - 20:52:12
+Olá
+1
+11/07/2023 - 20:52:12
+Essas são minhas primeiras mensagens
+1
+11/07/2023 - 20:52:12
+Neste canal
+1
+11/07/2023 - 20:52:12
+Que é de texto
+1
+11/07/2023 - 20:53:02
+Olá
+1
+11/07/2023 - 20:53:02
+Essas são minhas primeiras mensagens
+1
+11/07/2023 - 20:53:02
+Neste canal
+1
+11/07/2023 - 20:53:02
+Que é de texto
+1
+11/07/2023 - 20:53:02
+Olá
+1
+11/07/2023 - 20:53:02
+Essas são minhas primeiras mensagens
+1
+11/07/2023 - 20:53:02
+Neste canal
+1
+11/07/2023 - 20:53:02
+Que é de texto
+1
+11/07/2023 - 20:53:02
+Olá
+1
+11/07/2023 - 20:53:02
+Essas são minhas primeiras mensagens
+1
+11/07/2023 - 20:53:02
+Neste canal
+1
+11/07/2023 - 20:53:02
+Que é de texto
+1
+11/07/2023 - 20:53:02
+Olá
+1
+11/07/2023 - 20:53:02
+Essas são minhas primeiras mensagens
+1
+11/07/2023 - 20:53:02
+Neste canal
+1
+11/07/2023 - 20:53:02
+Que é de texto
+1
+11/07/2023 - 20:53:02
+Olá
+1
+11/07/2023 - 20:53:02
+Essas são minhas primeiras mensagens
+1
+11/07/2023 - 20:53:02
+Neste canal
+1
+11/07/2023 - 20:53:02
+Que é de texto
+1
+11/07/2023 - 20:53:02
+Olá
+1
+11/07/2023 - 20:53:02
+Essas são minhas primeiras mensagens
+1
+11/07/2023 - 20:53:02
+Neste canal
+1
+11/07/2023 - 20:53:02
+Que é de texto
+1
+11/07/2023 - 20:53:02
+Olá
+1
+11/07/2023 - 20:53:02
+Essas são minhas primeiras mensagens
+1
+11/07/2023 - 20:53:02
+Neste canal
+1
+11/07/2023 - 20:53:02
+Que é de texto
+1
+11/07/2023 - 20:53:02
+Olá
+1
+11/07/2023 - 20:53:02
+Essas são minhas primeiras mensagens
+1
+11/07/2023 - 20:53:02
+Neste canal
+1
+11/07/2023 - 20:53:02
+Que é de texto
+1
+11/07/2023 - 20:53:02
+Olá
+1
+11/07/2023 - 20:53:02
+Essas são minhas primeiras mensagens
+1
+11/07/2023 - 20:53:02
+Neste canal
+1
+11/07/2023 - 20:53:02
+Que é de texto
+1
+11/07/2023 - 20:53:02
+Olá
+1
+11/07/2023 - 20:53:02
+Essas são minhas primeiras mensagens
+1
+11/07/2023 - 20:53:02
+Neste canal
+1
+11/07/2023 - 20:53:02
 Que é de texto
 voz-1
 VOZ
 1
 3
-11/07/2023 - 12:37:43
+11/07/2023 - 20:53:02
 Quem é você ?
+2
+my-world
+Meu servidor pessoal
+9657
+1
+3
+0
 3
 messi-server
-
-
+Servidor legal do messi
+37988
+0
+0
+3
+002-lucas
+maoksdn  naosndoajns
+0912
+0
+0
+3
+003-lucas
+maoksdn  naosndoajns
+0912
+0
+0
+3
+004-lucas
+maoksdn  naosndoajns
+0912
 0
 0

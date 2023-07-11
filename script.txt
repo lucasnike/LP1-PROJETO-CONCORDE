@@ -1,6 +1,12 @@
 create-user lucas_vini lucas123 Lucas Silva
 create-user isa220779 isa1979 Isabel Cristina
 create-user leo@messi messi123 Lionel Messi
+create-user 1ucas_vini lucas123 Lucas Silva
+create-user 2sa220779 isa1979 Isabel Cristina
+create-user 3eo@messi messi123 Lionel Messi
+create-user 4ucas_vini lucas123 Lucas Silva
+create-user 5sa220779 isa1979 Isabel Cristina
+create-user 6eo@messi messi123 Lionel Messi
 login lucas_vini lucas123
 create-server 001-lucas
 set-server-desc 001-lucas maoksdn  naosndoajns
@@ -13,11 +19,59 @@ send-message Olá
 send-message Essas são minhas primeiras mensagens
 send-message Neste canal
 send-message Que é de texto
+send-message Olá
+send-message Essas são minhas primeiras mensagens
+send-message Neste canal
+send-message Que é de texto
+send-message Olá
+send-message Essas são minhas primeiras mensagens
+send-message Neste canal
+send-message Que é de texto
+send-message Olá
+send-message Essas são minhas primeiras mensagens
+send-message Neste canal
+send-message Que é de texto
+send-message Olá
+send-message Essas são minhas primeiras mensagens
+send-message Neste canal
+send-message Que é de texto
+send-message Olá
+send-message Essas são minhas primeiras mensagens
+send-message Neste canal
+send-message Que é de texto
+send-message Olá
+send-message Essas são minhas primeiras mensagens
+send-message Neste canal
+send-message Que é de texto
+send-message Olá
+send-message Essas são minhas primeiras mensagens
+send-message Neste canal
+send-message Que é de texto
+send-message Olá
+send-message Essas são minhas primeiras mensagens
+send-message Neste canal
+send-message Que é de texto
+send-message Olá
+send-message Essas são minhas primeiras mensagens
+send-message Neste canal
+send-message Que é de texto
 disconnect
 login isa220779 isa1979
 enter-server 001-lucas 0912
+create-server my-world
+set-server-desc my-world Meu servidor pessoal
+set-server-invite-code my-world 9657
 disconnect
 login leo@messi messi123
+create-server 002-lucas
+set-server-desc 002-lucas maoksdn  naosndoajns
+set-server-invite-code 002-lucas 0912
+create-server 003-lucas
+set-server-desc 003-lucas maoksdn  naosndoajns
+set-server-invite-code 003-lucas 0912
+create-server 004-lucas
+set-server-desc 004-lucas maoksdn  naosndoajns
+set-server-invite-code 004-lucas 0912
 enter-server 001-lucas 0912
 enter-channel voz-1
 send-message Oi
@@ -25,5 +79,8 @@ send-message Eu sou Leo messi
 send-message Jogador de futebol
 send-message Quem é você ?
 create-server messi-server
+set-server-desc messi-server Servidor legal do messi
+set-server-invite-code messi-server 37988
+enter-server my-world 9657
 disconnect
 quit

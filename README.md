@@ -21,6 +21,8 @@ Logo em seguida execute o comando **make** para gerar o arquivo executável **co
 ```bash
 make
 ```
+## Execução
+Para que o programa execute sem problemas é necessário criar uma pasta chamada **data** na raiz do projeto, pois é nela que os arquivos que salvam os dados da aplicação estão armazenados.
 
 Por fim, execute o comando seguinte para executar o sistema:
 ```bash

@@ -137,7 +137,17 @@ void Sistema::salvar()
 void Sistema::carregar()
 {
 	this->idUsuarioLogado = 0;
+	this->canalVisualizado = nullptr;
+	this->servidorVisualizado = nullptr;
+	this->usuarios.clear();
+	for (Servidor *server : servidores)
+	{
+		delete server;
+	}
+	this->servidores.clear();
+
 	this->carregarUsuarios();
+	this->carregarServidores();
 }
 
 void Sistema::createUser(string args)
@@ -250,7 +260,7 @@ void Sistema::setServerDescription(string desc)
 		{
 			if (server->getUsuarioDonoId() == this->idUsuarioLogado)
 			{
-				
+
 				server->setDescricao(desc);
 				cout << str_green("\nDESCRIÇÃO DO SERVIDOR CONFIGURADA COM SUCESSO\n\n");
 				return;
@@ -471,7 +481,7 @@ void Sistema::createChanel(string args)
 	}
 
 	if (this->servidorVisualizado->getUsuarioDonoId() != this->idUsuarioLogado)
-	{	
+	{
 		cout << str_red("\nAPENAS O DONO DO SERVIDO PODE CRIAR O CANAL\n\n");
 		return;
 	}
@@ -738,7 +748,6 @@ void Sistema::salvarUsuarios()
 		writter << user.getEmail() << endl;
 		writter << user.getSenha() << endl;
 	}
-	writter << this->idUsuarioLogado << endl;
 
 	writter.close();
 }
@@ -760,13 +769,7 @@ void Sistema::salvarServidores()
 	{
 		Servidor *server = servidores.at(i);
 
-		writter << server->getUsuarioDonoId();
-		if (server == servidorVisualizado)
-		{
-			writter << " View";
-		}
-		writter << endl;
-		
+		writter << server->getUsuarioDonoId() << endl;
 		writter << server->getNome() << endl;
 		writter << server->getDescricao() << endl;
 		writter << server->getCondigoConvite() << endl;
@@ -788,6 +791,7 @@ void Sistema::salvarServidores()
 
 			if (canal->getTipo() == "Texto")
 			{
+
 				CanalTexto *canalTexto = dynamic_cast<CanalTexto *>(canal);
 
 				writter << canalTexto->getNome() << endl;
@@ -859,37 +863,36 @@ void Sistema::carregarUsuarios()
 	{
 		string line;
 
-		getline(reader, line);
+		std::getline(reader, line);
 
 		// Sai da função pois o arquivo está vazio
 		if (line == "")
 		{
 			return;
 		}
-
 		int nUsers = stoi(line);
 
 		for (int i = 0; i < nUsers; i++)
 		{
-			getline(reader, line);
+			std::getline(reader, line);
 			int id = stoi(line);
 
-			getline(reader, line);
+			std::getline(reader, line);
 			string name = line;
 
-			getline(reader, line);
+			std::getline(reader, line);
 			string email = line;
 
-			getline(reader, line);
+			std::getline(reader, line);
 			string password = line;
 
 			Usuario user(id, name, email, password);
 			this->usuarios.push_back(user);
 		}
 
-		getline(reader, line);
-		int logedUser = stoi(line);
-		this->idUsuarioLogado = logedUser;
+		// std::getline(reader, line);
+		// int logedUser = stoi(line);
+		// this->idUsuarioLogado = logedUser;
 	}
 
 	reader.close();
@@ -911,42 +914,127 @@ void Sistema::carregarServidores()
 	{
 		string line;
 
-		getline(reader, line);
+		std::getline(reader, line);
+
+		if (line == "")
+		{
+			return;
+		}
+
 		int creator = stoi(line);
 
-		getline(reader, line);
+
+		std::getline(reader, line);
 		string name = line;
 
-		getline(reader, line);
+		std::getline(reader, line);
 		string desc = line;
 
-		getline(reader, line);
+		std::getline(reader, line);
 		string inviteCode = line;
 
-		Servidor server;
-		server.setUsuarioDonoId(creator);
-		server.setNome(name);
-		server.setDescricao(desc);
-		server.setCondigoConvite(inviteCode);
+		Servidor *server = new Servidor(name, creator);
+		server->setDescricao(desc);
+		server->setCondigoConvite(inviteCode);
 
-		getline(reader, line);
+		std::getline(reader, line);
 		int nUsers = stoi(line);
 
 		for (int i = 0; i < nUsers; i++)
 		{
-			getline(reader, line);
+			std::getline(reader, line);
 			int id = stoi(line);
-			server.addParticipante(id);
+			server->addParticipante(id);
 		}
 
-		getline(reader, line);
+		std::getline(reader, line);
 		int nChannels = stoi(line);
 
+		// Percorre os canais
 		for (int i = 0; i < nChannels; i++)
 		{
-			
+			vector<Canal *> *canais = server->getCanais();
+
+			// std::getline(reader, line);
+			// string channelView = line;
+
+			// if (channelView == "1")
+			// {
+			// 	channelInView = true;
+			// }
+
+			std::getline(reader, line);
+			string channelName = line;
+
+			std::getline(reader, line);
+			string channelType = line;
+
+			if (channelType == "TEXTO")
+			{
+				std::getline(reader, line);
+				int nMessages = stoi(line);
+
+				CanalTexto *textChannel = new CanalTexto(channelName);
+
+				for (int j = 0; j < nMessages; j++)
+				{
+					std::getline(reader, line);
+					int sentBy = stoi(line);
+
+					std::getline(reader, line);
+					string sentDate = line;
+
+					std::getline(reader, line);
+					string content = line;
+
+					Mensagem m(sentDate, sentBy, content);
+					textChannel->mensagens.push_back(m);
+				}
+
+				canais->push_back(textChannel);
+
+				// if (channelInView)
+				// {
+				// 	this->canalVisualizado = textChannel;
+				// }
+			}
+			else
+			{
+				std::getline(reader, line);
+				int nMessages = stoi(line);
+
+				CanalVoz *voiceChannel = new CanalVoz(channelName);
+
+				for (int j = 0; j < nMessages; j++)
+				{
+					std::getline(reader, line);
+					int sentBy = stoi(line);
+
+					std::getline(reader, line);
+					string sentDate = line;
+
+					std::getline(reader, line);
+					string content = line;
+
+					Mensagem m(sentDate, sentBy, content);
+					voiceChannel->setMensagem(m);
+				}
+
+				canais->push_back(voiceChannel);
+
+				// if (channelInView)
+				// {
+				// 	this->canalVisualizado = voiceChannel;
+				// }
+			}
 		}
-		
+
+		this->servidores.push_back(server);
+
+		// if (serverInView)
+		// {
+		// 	this->servidorVisualizado = server;
+		// }
 	}
 
 	reader.close();
