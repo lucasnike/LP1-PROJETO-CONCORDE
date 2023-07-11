@@ -15,6 +15,14 @@ void Sistema::setCanalVisualizado(Canal *canal)
 	this->canalVisualizado = canal;
 }
 
+Sistema::~Sistema()
+{
+	for (Servidor *server : servidores)
+	{
+		delete server;
+	}
+}
+
 bool Sistema::comandsManager(string comand)
 {
 	int string_index = comand.find(" ");
@@ -222,16 +230,16 @@ void Sistema::disconnect()
 
 void Sistema::createServer(string name)
 {
-	for (Servidor &server : this->servidores)
+	for (Servidor *server : this->servidores)
 	{
-		if (server.getNome() == name)
+		if (server->getNome() == name)
 		{
 			cout << str_red("\nJÁ EXISTE UM SERVIDOR COM O NOME INFORMADO\n\n");
 			return;
 		}
 	}
-
-	this->servidores.push_back(Servidor(name, this->idUsuarioLogado));
+	Servidor *server = new Servidor(name, this->idUsuarioLogado);
+	this->servidores.push_back(server);
 	cout << str_green("\nSERVIDOR CRIADO COM O NOME " + name + "\n\n");
 }
 
@@ -244,13 +252,14 @@ void Sistema::setServerDescription(string desc)
 
 	std::replace(desc.begin(), desc.end(), '\"', '\0');
 
-	for (Servidor &server : this->servidores)
+	for (Servidor *server : this->servidores)
 	{
-		if (server.getNome() == nome)
+		if (server->getNome() == nome)
 		{
-			if (server.getUsuarioDonoId() == this->idUsuarioLogado)
+			if (server->getUsuarioDonoId() == this->idUsuarioLogado)
 			{
-				server.setDescricao(desc);
+				
+				server->setDescricao(desc);
 				cout << str_green("\nDESCRIÇÃO DO SERVIDOR CONFIGURADA COM SUCESSO\n\n");
 				return;
 			}
@@ -281,13 +290,13 @@ void Sistema::setServerInviteCode(string args)
 		codigo = args;
 	}
 
-	for (Servidor &server : this->servidores)
+	for (Servidor *server : this->servidores)
 	{
-		if (server.getNome() == nome)
+		if (server->getNome() == nome)
 		{
-			if (server.getUsuarioDonoId() == this->idUsuarioLogado)
+			if (server->getUsuarioDonoId() == this->idUsuarioLogado)
 			{
-				server.setCondigoConvite(codigo);
+				server->setCondigoConvite(codigo);
 				if (codigo == "")
 				{
 					cout << str_green("\nCÓDIGO DE CONVITE ALTERADO COM SUCESSO, AGORA QUALQUER UM PODE ENTRAR NO SEU SERVIDOR\n\n");
@@ -317,9 +326,9 @@ void Sistema::listServers()
 	}
 
 	cout << str_blue("\nINICIANDO LISTAGEM DE SERVIDORES\n\n");
-	for (Servidor server : this->servidores)
+	for (Servidor *server : this->servidores)
 	{
-		cout << str_purple(server.getNome() + "\n");
+		cout << str_purple(server->getNome() + "\n");
 	}
 	cout << str_blue("\nFINALIZANDO LISTAGEM DE SERVIDORES\n\n");
 }
@@ -334,13 +343,14 @@ void Sistema::removeServer(string args)
 
 	for (int i = 0; i < this->servidores.size(); i++)
 	{
-		Servidor server = this->servidores[i];
-		if (server.getNome() == args)
+		Servidor *server = this->servidores[i];
+		if (server->getNome() == args)
 		{
-			if (server.getUsuarioDonoId() == idUsuarioLogado)
+			if (server->getUsuarioDonoId() == idUsuarioLogado)
 			{
+				cout << str_green("\nSERVIDOR " + server->getNome() + " REMOVIDO\n\n");
+				delete server;
 				this->servidores.erase(servidores.begin() + i);
-				cout << str_green("\nSERVIDOR " + server.getNome() + " REMOVIDO\n\n");
 				return;
 			}
 			else
@@ -365,18 +375,20 @@ void Sistema::enterServer(string args)
 	int index = args.find(' ');
 	string name = args.substr(0, index);
 
-	for (Servidor &server : this->servidores)
+	for (int i = 0; i < servidores.size(); i++)
 	{
-		if (server.getNome() == name)
+		Servidor *server = servidores[i];
+		if (server->getNome() == name)
 		{
-			bool participa = server.participanteExiste(this->idUsuarioLogado);
-			if (server.getCondigoConvite() == "" || server.getUsuarioDonoId() == this->idUsuarioLogado || participa)
+			bool participa = server->participanteExiste(this->idUsuarioLogado);
+			if (server->getCondigoConvite() == "" || server->getUsuarioDonoId() == this->idUsuarioLogado || participa)
 			{
 				if (!participa)
 				{
-					server.inserirParticipante(this->idUsuarioLogado);
+					server->inserirParticipante(this->idUsuarioLogado);
 				}
-				this->servidorVisualizado = &server;
+
+				this->servidorVisualizado = server;
 				cout << str_green("\nENTROU NO SERVIDOR COM SUCESSO\n\n");
 				return;
 			}
@@ -389,10 +401,10 @@ void Sistema::enterServer(string args)
 				}
 				args.erase(0, index + 1);
 
-				if (server.getCondigoConvite() == args)
+				if (server->getCondigoConvite() == args)
 				{
-					server.inserirParticipante(this->idUsuarioLogado);
-					this->servidorVisualizado = &server;
+					server->inserirParticipante(this->idUsuarioLogado);
+					this->servidorVisualizado = server;
 					cout << str_green("\nENTROU NO SERVIDOR COM SUCESSO\n\n");
 					return;
 				}
@@ -454,7 +466,7 @@ void Sistema::createChanel(string args)
 		cout << str_red("\nESSE COMANDO NECESSITA DE DOIS ARGUMENTOS <NOME DO CANAL>, <TIPO DO CANAL>\n\n");
 		return;
 	}
-	else if (index == -1)
+	if (index == -1)
 	{
 		cout << str_red("\nINFORMAR O TIPO DO CANAL É OBRIGATÓRIO\n\n");
 		return;
@@ -467,7 +479,7 @@ void Sistema::createChanel(string args)
 	}
 
 	if (this->servidorVisualizado->getUsuarioDonoId() != this->idUsuarioLogado)
-	{
+	{	
 		cout << str_red("\nAPENAS O DONO DO SERVIDO PODE CRIAR O CANAL\n\n");
 		return;
 	}
@@ -754,30 +766,29 @@ void Sistema::salvarServidores()
 	int size = servidores.size();
 	for (int i = 0; i < size; i++)
 	{
-		Servidor &server = servidores.at(i);
-		cout << "123 milhasz\n";
+		Servidor *server = servidores.at(i);
 
-		cout << server.getNome() << endl;
+		cout << server->getNome() << endl;
 
-		writter << server.getUsuarioDonoId();
-		if (&server == servidorVisualizado)
+		writter << server->getUsuarioDonoId();
+		if (server == servidorVisualizado)
 		{
 			writter << " View";
 		}
 		writter << endl;
 		
-		writter << server.getNome() << endl;
-		writter << server.getDescricao() << endl;
-		writter << server.getCondigoConvite() << endl;
-		writter << server.getParticipantesIds().size() << endl;
+		writter << server->getNome() << endl;
+		writter << server->getDescricao() << endl;
+		writter << server->getCondigoConvite() << endl;
+		writter << server->getParticipantesIds().size() << endl;
 
-		vector<int> ids = server.getParticipantesIds();
+		vector<int> ids = server->getParticipantesIds();
 		for (int j = 0; j < ids.size(); j++)
 		{
 			writter << ids[j] << endl;
 		}
 
-		vector<Canal *> *canais = server.getCanais();
+		vector<Canal *> *canais = server->getCanais();
 
 		writter << canais->size() << endl;
 

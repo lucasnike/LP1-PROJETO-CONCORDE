@@ -11,7 +11,7 @@ int main()
 
 	bool quiting = false;
 
-	sys.carregar();
+	// sys.carregar();
 
 	while (true)
 	{

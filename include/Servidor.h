@@ -12,13 +12,13 @@ class Servidor
 {
 private:
 	/// @brief Id do usuário que criou o servidor
-	int usuarioDonoId;
+	int usuarioDonoId = 0;
 	/// @brief Nome do servidor
-	string nome;
+	string nome = "";
 	/// @brief Descrição do servidor
-	string descricao;
+	string descricao = "";
 	/// @brief Código de convite que é usado para entrar no servidor
-	string codigoConvite;
+	string codigoConvite = "";
 	/// @brief Lista com os canais do servidor
 	vector<Canal *> canais;
 	/// @brief Lista com os ids dos usuários que participam do servidor

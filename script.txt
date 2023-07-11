@@ -25,6 +25,5 @@ send-message Eu sou Leo messi
 send-message Jogador de futebol
 send-message Quem é você ?
 create-server messi-server
-enter-server messi-server
 disconnect
 quit

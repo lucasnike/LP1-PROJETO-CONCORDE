@@ -26,7 +26,7 @@ private:
 	vector<Usuario> usuarios;
 
 	/// @brief Lista de servidores do Concorde
-	vector<Servidor> servidores;
+	vector<Servidor*> servidores;
 
 	/// @brief Id do usuário logado no momento da execução
 	int idUsuarioLogado = 0;
@@ -147,6 +147,10 @@ public:
 
 	/// @brief Contrutor padrão da classe
 	Sistema() = default;
+
+	
+	/// @brief Destruto da classe sistema, remove todos os servidores
+	~Sistema();
 
 	/// @brief Função que recebe o comando, identifica qual é o comando e executa sua respectiva função
 	/// @param comand Comando digitado pelo usuário
